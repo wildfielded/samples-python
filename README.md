@@ -1,2 +1,1 @@
-# samples-python
-Python scripting examples
+# Python scripting examples for references
