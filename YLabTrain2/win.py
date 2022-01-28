@@ -2,12 +2,19 @@
 
 import sys
 
-from PyQt5.QtCore import QCoreApplication, Qt
+from PyQt5.QtCore import QCoreApplication, Qt, QSize
 from PyQt5.QtWidgets import (QApplication,
                              QWidget, QDesktopWidget, QPushButton,
                              QGridLayout, QHBoxLayout, QVBoxLayout)
 
-#####=====----- Классы -----=====#####
+
+#####=====----- Variables -----=====#####
+
+FIELD_ROWS = 10
+FIELD_COLS = 10
+
+
+#####=====----- Classes -----=====#####
 
 class OwenWindow(QWidget):
     ''' Основное окно
@@ -19,11 +26,23 @@ class OwenWindow(QWidget):
     def setup_geom(self):
         ''' Задаёт размер и центрирует окно
         '''
-        self.resize(800, 800)
+        self.resize(400, 400)
         win_geom_ = self.frameGeometry()
         win_center_ = QDesktopWidget().availableGeometry().center()
         win_geom_.moveCenter(win_center_)
         self.move(win_geom_.topLeft())
+
+    def put_cross(self, bobj_, tup_):
+        bobj_.setText('X')
+
+    def setup_gamefield(self, rows_, cols_):
+        butt_array_ = [(r_, c_) for r_ in range(rows_) for c_ in range(cols_)]
+        for butt_ in butt_array_:
+            b_ = QPushButton('')
+            b_.setFixedSize(QSize(30, 30))
+            #####b_.clicked.connect(lambda: b_.setText('X'))
+            b_.clicked.connect(lambda: self.put_cross(b_, butt_))
+            self.gamefield_layout_.addWidget(b_, *butt_)
 
     def setup_main_win(self):
         self.setWindowTitle('OWEN')
@@ -33,58 +52,30 @@ class OwenWindow(QWidget):
         button_dude_.setToolTip(u'Первый ход за игроком')
         button_comp_ = QPushButton(u'Начинает\nкомпьютер (0)')
         button_comp_.setToolTip(u'Первый ход за компьютером')
-        button_exit_ = QPushButton(u'Выход')
-        button_exit_.setToolTip(u'Выход из программы')
-        button_exit_.clicked.connect(QCoreApplication.instance().quit)
+        #####button_exit_ = QPushButton(u'Выход')
+        #####button_exit_.setToolTip(u'Выход из программы')
+        #####button_exit_.clicked.connect(QCoreApplication.instance().quit)
 
         toolbar_layout_ = QHBoxLayout()
         toolbar_layout_.addWidget(button_dude_)
         toolbar_layout_.addWidget(button_comp_)
-        toolbar_layout_.addWidget(button_exit_)
+        #####toolbar_layout_.addWidget(button_exit_)
 
         butt_array_ = [(x, y) for x in range(5) for y in range(5)]
         butt_unit_ = QPushButton('X')
-        gamefield_layout_ = QGridLayout()
-        gamefield_layout_.addWidget(QPushButton(''), 0, 0)
-        gamefield_layout_.addWidget(QPushButton(''), 0, 1)
-        gamefield_layout_.addWidget(QPushButton(''), 0, 2)
-        gamefield_layout_.addWidget(QPushButton(''), 0, 3)
-        gamefield_layout_.addWidget(QPushButton(''), 0, 4)
-        gamefield_layout_.addWidget(QPushButton(''), 0, 5)
-        gamefield_layout_.addWidget(QPushButton(''), 0, 6)
-        gamefield_layout_.addWidget(QPushButton(''), 0, 7)
-        gamefield_layout_.addWidget(QPushButton(''), 0, 8)
-        gamefield_layout_.addWidget(QPushButton(''), 0, 9)
-        gamefield_layout_.addWidget(QPushButton(''), 1, 0)
-        gamefield_layout_.addWidget(QPushButton(''), 1, 1)
-        gamefield_layout_.addWidget(QPushButton(''), 1, 2)
-        gamefield_layout_.addWidget(QPushButton(''), 1, 3)
-        gamefield_layout_.addWidget(QPushButton(''), 1, 4)
-        gamefield_layout_.addWidget(QPushButton(''), 1, 5)
-        gamefield_layout_.addWidget(QPushButton(''), 1, 6)
-        gamefield_layout_.addWidget(QPushButton(''), 1, 7)
-        gamefield_layout_.addWidget(QPushButton(''), 1, 8)
-        gamefield_layout_.addWidget(QPushButton(''), 1, 9)
-        gamefield_layout_.addWidget(QPushButton(''), 2, 0)
-        gamefield_layout_.addWidget(QPushButton(''), 2, 1)
-        gamefield_layout_.addWidget(QPushButton(''), 2, 2)
-        gamefield_layout_.addWidget(QPushButton(''), 2, 3)
-        gamefield_layout_.addWidget(QPushButton(''), 2, 4)
-        gamefield_layout_.addWidget(QPushButton(''), 2, 5)
-        gamefield_layout_.addWidget(QPushButton(''), 2, 6)
-        gamefield_layout_.addWidget(QPushButton(''), 2, 7)
-        gamefield_layout_.addWidget(QPushButton(''), 2, 8)
-        gamefield_layout_.addWidget(QPushButton(''), 2, 9)
+        self.gamefield_layout_ = QGridLayout()
+        self.gamefield_layout_.setSpacing(0)
+        self.setup_gamefield(FIELD_ROWS, FIELD_COLS)
 
         main_layout_ = QVBoxLayout()
         main_layout_.addLayout(toolbar_layout_)
-        main_layout_.addLayout(gamefield_layout_)
+        main_layout_.addLayout(self.gamefield_layout_)
         self.setLayout(main_layout_)
 
 
 #####=====----- Функции -----=====#####
 
-#####=====----- Собственно, сама программа -----=====#####
+#####=====----- MAIN -----=====#####
 
 if __name__ == '__main__':
     app_ = QApplication([])
