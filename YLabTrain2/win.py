@@ -34,7 +34,7 @@ class GameField():
     ''' Весь массив клеток игрового поля
     '''
     def __init__(self):
-        self.field = [[GameCell().cell_dict for col_ in range(FIELD_COLS)] for raw_ in range(FIELD_ROWS)]
+        self.field = [[GameCell().cell_dict for col_ in range(FIELD_COLS)] for row_ in range(FIELD_ROWS)]
         for pos_ in POS_LIST:
             self.field[pos_[0]][pos_[1]]['pos'] = pos_
             #####self.field[pos_[0]][pos_[1]]['butt'].clicked.connect(lambda: self.butt_clicked(pos_))
