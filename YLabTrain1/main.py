@@ -120,10 +120,10 @@ def output_result(short_list_, point_list_, distance_array_):
         А именно: дополнительно выводит альтернативные маршруты (если есть),
         близкие по расстоянию к кратчайшему.
     '''
-    output_str_ = u'Кратчайший маршрут:\n'
+    output_str_ = u'\nКратчайший маршрут:\n'
     output_str_ += write_string(short_list_[0], point_list_, distance_array_)
     if len(short_list_) > 1:
-        output_str_ += u'\nАльтернативные кратчайшие маршруты:\n'
+        output_str_ += u'\n\nАльтернативные кратчайшие маршруты:\n'
         for another_list_ in short_list_[1:]:
             output_str_ += write_string(another_list_, point_list_, distance_array_)
     return output_str_
