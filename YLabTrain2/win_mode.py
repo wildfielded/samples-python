@@ -159,7 +159,7 @@ class OwenWindow(QWidget):
         self.write_weights(r_, c_, 'O')
         self.check_line(r_, c_, 'O')
 
-    def put_signs(self, bu_, row_, col_):
+    def put_signs(self, row_, col_):
         ''' Принимает ход игрока и делает ход компьютера
         '''
         if self.gamefield.field_array[row_][col_]['xo'] == '.':
@@ -213,205 +213,205 @@ class OwenWindow(QWidget):
             Пришлось пока захардкодить.
         '''
         bu00_ = self.gamefield.field_array[0][0]['butt']
-        bu00_.clicked.connect(lambda: self.put_signs(bu00_, 0, 0))
+        bu00_.clicked.connect(lambda: self.put_signs(0, 0))
         bu01_ = self.gamefield.field_array[0][1]['butt']
-        bu01_.clicked.connect(lambda: self.put_signs(bu01_, 0, 1))
+        bu01_.clicked.connect(lambda: self.put_signs(0, 1))
         bu02_ = self.gamefield.field_array[0][2]['butt']
-        bu02_.clicked.connect(lambda: self.put_signs(bu02_, 0, 2))
+        bu02_.clicked.connect(lambda: self.put_signs(0, 2))
         bu03_ = self.gamefield.field_array[0][3]['butt']
-        bu03_.clicked.connect(lambda: self.put_signs(bu03_, 0, 3))
+        bu03_.clicked.connect(lambda: self.put_signs(0, 3))
         bu04_ = self.gamefield.field_array[0][4]['butt']
-        bu04_.clicked.connect(lambda: self.put_signs(bu04_, 0, 4))
+        bu04_.clicked.connect(lambda: self.put_signs(0, 4))
         bu05_ = self.gamefield.field_array[0][5]['butt']
-        bu05_.clicked.connect(lambda: self.put_signs(bu05_, 0, 5))
+        bu05_.clicked.connect(lambda: self.put_signs(0, 5))
         bu06_ = self.gamefield.field_array[0][6]['butt']
-        bu06_.clicked.connect(lambda: self.put_signs(bu06_, 0, 6))
+        bu06_.clicked.connect(lambda: self.put_signs(0, 6))
         bu07_ = self.gamefield.field_array[0][7]['butt']
-        bu07_.clicked.connect(lambda: self.put_signs(bu07_, 0, 7))
+        bu07_.clicked.connect(lambda: self.put_signs(0, 7))
         bu08_ = self.gamefield.field_array[0][8]['butt']
-        bu08_.clicked.connect(lambda: self.put_signs(bu08_, 0, 8))
+        bu08_.clicked.connect(lambda: self.put_signs(0, 8))
         bu09_ = self.gamefield.field_array[0][9]['butt']
-        bu09_.clicked.connect(lambda: self.put_signs(bu09_, 0, 9))
+        bu09_.clicked.connect(lambda: self.put_signs(0, 9))
         bu10_ = self.gamefield.field_array[1][0]['butt']
-        bu10_.clicked.connect(lambda: self.put_signs(bu10_, 1, 0))
+        bu10_.clicked.connect(lambda: self.put_signs(1, 0))
         bu11_ = self.gamefield.field_array[1][1]['butt']
-        bu11_.clicked.connect(lambda: self.put_signs(bu11_, 1, 1))
+        bu11_.clicked.connect(lambda: self.put_signs(1, 1))
         bu12_ = self.gamefield.field_array[1][2]['butt']
-        bu12_.clicked.connect(lambda: self.put_signs(bu12_, 1, 2))
+        bu12_.clicked.connect(lambda: self.put_signs(1, 2))
         bu13_ = self.gamefield.field_array[1][3]['butt']
-        bu13_.clicked.connect(lambda: self.put_signs(bu13_, 1, 3))
+        bu13_.clicked.connect(lambda: self.put_signs(1, 3))
         bu14_ = self.gamefield.field_array[1][4]['butt']
-        bu14_.clicked.connect(lambda: self.put_signs(bu14_, 1, 4))
+        bu14_.clicked.connect(lambda: self.put_signs(1, 4))
         bu15_ = self.gamefield.field_array[1][5]['butt']
-        bu15_.clicked.connect(lambda: self.put_signs(bu15_, 1, 5))
+        bu15_.clicked.connect(lambda: self.put_signs(1, 5))
         bu16_ = self.gamefield.field_array[1][6]['butt']
-        bu16_.clicked.connect(lambda: self.put_signs(bu16_, 1, 6))
+        bu16_.clicked.connect(lambda: self.put_signs(1, 6))
         bu17_ = self.gamefield.field_array[1][7]['butt']
-        bu17_.clicked.connect(lambda: self.put_signs(bu17_, 1, 7))
+        bu17_.clicked.connect(lambda: self.put_signs(1, 7))
         bu18_ = self.gamefield.field_array[1][8]['butt']
-        bu18_.clicked.connect(lambda: self.put_signs(bu18_, 1, 8))
+        bu18_.clicked.connect(lambda: self.put_signs(1, 8))
         bu19_ = self.gamefield.field_array[1][9]['butt']
-        bu19_.clicked.connect(lambda: self.put_signs(bu19_, 1, 9))
+        bu19_.clicked.connect(lambda: self.put_signs(1, 9))
         bu20_ = self.gamefield.field_array[2][0]['butt']
-        bu20_.clicked.connect(lambda: self.put_signs(bu20_, 2, 0))
+        bu20_.clicked.connect(lambda: self.put_signs(2, 0))
         bu21_ = self.gamefield.field_array[2][1]['butt']
-        bu21_.clicked.connect(lambda: self.put_signs(bu21_, 2, 1))
+        bu21_.clicked.connect(lambda: self.put_signs(2, 1))
         bu22_ = self.gamefield.field_array[2][2]['butt']
-        bu22_.clicked.connect(lambda: self.put_signs(bu22_, 2, 2))
+        bu22_.clicked.connect(lambda: self.put_signs(2, 2))
         bu23_ = self.gamefield.field_array[2][3]['butt']
-        bu23_.clicked.connect(lambda: self.put_signs(bu23_, 2, 3))
+        bu23_.clicked.connect(lambda: self.put_signs(2, 3))
         bu24_ = self.gamefield.field_array[2][4]['butt']
-        bu24_.clicked.connect(lambda: self.put_signs(bu24_, 2, 4))
+        bu24_.clicked.connect(lambda: self.put_signs(2, 4))
         bu25_ = self.gamefield.field_array[2][5]['butt']
-        bu25_.clicked.connect(lambda: self.put_signs(bu25_, 2, 5))
+        bu25_.clicked.connect(lambda: self.put_signs(2, 5))
         bu26_ = self.gamefield.field_array[2][6]['butt']
-        bu26_.clicked.connect(lambda: self.put_signs(bu26_, 2, 6))
+        bu26_.clicked.connect(lambda: self.put_signs(2, 6))
         bu27_ = self.gamefield.field_array[2][7]['butt']
-        bu27_.clicked.connect(lambda: self.put_signs(bu27_, 2, 7))
+        bu27_.clicked.connect(lambda: self.put_signs(2, 7))
         bu28_ = self.gamefield.field_array[2][8]['butt']
-        bu28_.clicked.connect(lambda: self.put_signs(bu28_, 2, 8))
+        bu28_.clicked.connect(lambda: self.put_signs(2, 8))
         bu29_ = self.gamefield.field_array[2][9]['butt']
-        bu29_.clicked.connect(lambda: self.put_signs(bu29_, 2, 9))
+        bu29_.clicked.connect(lambda: self.put_signs(2, 9))
         bu30_ = self.gamefield.field_array[3][0]['butt']
-        bu30_.clicked.connect(lambda: self.put_signs(bu30_, 3, 0))
+        bu30_.clicked.connect(lambda: self.put_signs(3, 0))
         bu31_ = self.gamefield.field_array[3][1]['butt']
-        bu31_.clicked.connect(lambda: self.put_signs(bu31_, 3, 1))
+        bu31_.clicked.connect(lambda: self.put_signs(3, 1))
         bu32_ = self.gamefield.field_array[3][2]['butt']
-        bu32_.clicked.connect(lambda: self.put_signs(bu32_, 3, 2))
+        bu32_.clicked.connect(lambda: self.put_signs(3, 2))
         bu33_ = self.gamefield.field_array[3][3]['butt']
-        bu33_.clicked.connect(lambda: self.put_signs(bu33_, 3, 3))
+        bu33_.clicked.connect(lambda: self.put_signs(3, 3))
         bu34_ = self.gamefield.field_array[3][4]['butt']
-        bu34_.clicked.connect(lambda: self.put_signs(bu34_, 3, 4))
+        bu34_.clicked.connect(lambda: self.put_signs(3, 4))
         bu35_ = self.gamefield.field_array[3][5]['butt']
-        bu35_.clicked.connect(lambda: self.put_signs(bu35_, 3, 5))
+        bu35_.clicked.connect(lambda: self.put_signs(3, 5))
         bu36_ = self.gamefield.field_array[3][6]['butt']
-        bu36_.clicked.connect(lambda: self.put_signs(bu36_, 3, 6))
+        bu36_.clicked.connect(lambda: self.put_signs(3, 6))
         bu37_ = self.gamefield.field_array[3][7]['butt']
-        bu37_.clicked.connect(lambda: self.put_signs(bu37_, 3, 7))
+        bu37_.clicked.connect(lambda: self.put_signs(3, 7))
         bu38_ = self.gamefield.field_array[3][8]['butt']
-        bu38_.clicked.connect(lambda: self.put_signs(bu38_, 3, 8))
+        bu38_.clicked.connect(lambda: self.put_signs(3, 8))
         bu39_ = self.gamefield.field_array[3][9]['butt']
-        bu39_.clicked.connect(lambda: self.put_signs(bu39_, 3, 9))
+        bu39_.clicked.connect(lambda: self.put_signs(3, 9))
         bu40_ = self.gamefield.field_array[4][0]['butt']
-        bu40_.clicked.connect(lambda: self.put_signs(bu40_, 4, 0))
+        bu40_.clicked.connect(lambda: self.put_signs(4, 0))
         bu41_ = self.gamefield.field_array[4][1]['butt']
-        bu41_.clicked.connect(lambda: self.put_signs(bu41_, 4, 1))
+        bu41_.clicked.connect(lambda: self.put_signs(4, 1))
         bu42_ = self.gamefield.field_array[4][2]['butt']
-        bu42_.clicked.connect(lambda: self.put_signs(bu42_, 4, 2))
+        bu42_.clicked.connect(lambda: self.put_signs(4, 2))
         bu43_ = self.gamefield.field_array[4][3]['butt']
-        bu43_.clicked.connect(lambda: self.put_signs(bu43_, 4, 3))
+        bu43_.clicked.connect(lambda: self.put_signs(4, 3))
         bu44_ = self.gamefield.field_array[4][4]['butt']
-        bu44_.clicked.connect(lambda: self.put_signs(bu44_, 4, 4))
+        bu44_.clicked.connect(lambda: self.put_signs(4, 4))
         bu45_ = self.gamefield.field_array[4][5]['butt']
-        bu45_.clicked.connect(lambda: self.put_signs(bu45_, 4, 5))
+        bu45_.clicked.connect(lambda: self.put_signs(4, 5))
         bu46_ = self.gamefield.field_array[4][6]['butt']
-        bu46_.clicked.connect(lambda: self.put_signs(bu46_, 4, 6))
+        bu46_.clicked.connect(lambda: self.put_signs(4, 6))
         bu47_ = self.gamefield.field_array[4][7]['butt']
-        bu47_.clicked.connect(lambda: self.put_signs(bu47_, 4, 7))
+        bu47_.clicked.connect(lambda: self.put_signs(4, 7))
         bu48_ = self.gamefield.field_array[4][8]['butt']
-        bu48_.clicked.connect(lambda: self.put_signs(bu48_, 4, 8))
+        bu48_.clicked.connect(lambda: self.put_signs(4, 8))
         bu49_ = self.gamefield.field_array[4][9]['butt']
-        bu49_.clicked.connect(lambda: self.put_signs(bu49_, 4, 9))
+        bu49_.clicked.connect(lambda: self.put_signs(4, 9))
         bu50_ = self.gamefield.field_array[5][0]['butt']
-        bu50_.clicked.connect(lambda: self.put_signs(bu50_, 5, 0))
+        bu50_.clicked.connect(lambda: self.put_signs(5, 0))
         bu51_ = self.gamefield.field_array[5][1]['butt']
-        bu51_.clicked.connect(lambda: self.put_signs(bu51_, 5, 1))
+        bu51_.clicked.connect(lambda: self.put_signs(5, 1))
         bu52_ = self.gamefield.field_array[5][2]['butt']
-        bu52_.clicked.connect(lambda: self.put_signs(bu52_, 5, 2))
+        bu52_.clicked.connect(lambda: self.put_signs(5, 2))
         bu53_ = self.gamefield.field_array[5][3]['butt']
-        bu53_.clicked.connect(lambda: self.put_signs(bu53_, 5, 3))
+        bu53_.clicked.connect(lambda: self.put_signs(5, 3))
         bu54_ = self.gamefield.field_array[5][4]['butt']
-        bu54_.clicked.connect(lambda: self.put_signs(bu54_, 5, 4))
+        bu54_.clicked.connect(lambda: self.put_signs(5, 4))
         bu55_ = self.gamefield.field_array[5][5]['butt']
-        bu55_.clicked.connect(lambda: self.put_signs(bu55_, 5, 5))
+        bu55_.clicked.connect(lambda: self.put_signs(5, 5))
         bu56_ = self.gamefield.field_array[5][6]['butt']
-        bu56_.clicked.connect(lambda: self.put_signs(bu56_, 5, 6))
+        bu56_.clicked.connect(lambda: self.put_signs(5, 6))
         bu57_ = self.gamefield.field_array[5][7]['butt']
-        bu57_.clicked.connect(lambda: self.put_signs(bu57_, 5, 7))
+        bu57_.clicked.connect(lambda: self.put_signs(5, 7))
         bu58_ = self.gamefield.field_array[5][8]['butt']
-        bu58_.clicked.connect(lambda: self.put_signs(bu58_, 5, 8))
+        bu58_.clicked.connect(lambda: self.put_signs(5, 8))
         bu59_ = self.gamefield.field_array[5][9]['butt']
-        bu59_.clicked.connect(lambda: self.put_signs(bu59_, 5, 9))
+        bu59_.clicked.connect(lambda: self.put_signs(5, 9))
         bu60_ = self.gamefield.field_array[6][0]['butt']
-        bu60_.clicked.connect(lambda: self.put_signs(bu60_, 6, 0))
+        bu60_.clicked.connect(lambda: self.put_signs(6, 0))
         bu61_ = self.gamefield.field_array[6][1]['butt']
-        bu61_.clicked.connect(lambda: self.put_signs(bu61_, 6, 1))
+        bu61_.clicked.connect(lambda: self.put_signs(6, 1))
         bu62_ = self.gamefield.field_array[6][2]['butt']
-        bu62_.clicked.connect(lambda: self.put_signs(bu62_, 6, 2))
+        bu62_.clicked.connect(lambda: self.put_signs(6, 2))
         bu63_ = self.gamefield.field_array[6][3]['butt']
-        bu63_.clicked.connect(lambda: self.put_signs(bu63_, 6, 3))
+        bu63_.clicked.connect(lambda: self.put_signs(6, 3))
         bu64_ = self.gamefield.field_array[6][4]['butt']
-        bu64_.clicked.connect(lambda: self.put_signs(bu64_, 6, 4))
+        bu64_.clicked.connect(lambda: self.put_signs(6, 4))
         bu65_ = self.gamefield.field_array[6][5]['butt']
-        bu65_.clicked.connect(lambda: self.put_signs(bu65_, 6, 5))
+        bu65_.clicked.connect(lambda: self.put_signs(6, 5))
         bu66_ = self.gamefield.field_array[6][6]['butt']
-        bu66_.clicked.connect(lambda: self.put_signs(bu66_, 6, 6))
+        bu66_.clicked.connect(lambda: self.put_signs(6, 6))
         bu67_ = self.gamefield.field_array[6][7]['butt']
-        bu67_.clicked.connect(lambda: self.put_signs(bu67_, 6, 7))
+        bu67_.clicked.connect(lambda: self.put_signs(6, 7))
         bu68_ = self.gamefield.field_array[6][8]['butt']
-        bu68_.clicked.connect(lambda: self.put_signs(bu68_, 6, 8))
+        bu68_.clicked.connect(lambda: self.put_signs(6, 8))
         bu69_ = self.gamefield.field_array[6][9]['butt']
-        bu69_.clicked.connect(lambda: self.put_signs(bu69_, 6, 9))
+        bu69_.clicked.connect(lambda: self.put_signs(6, 9))
         bu70_ = self.gamefield.field_array[7][0]['butt']
-        bu70_.clicked.connect(lambda: self.put_signs(bu70_, 7, 0))
+        bu70_.clicked.connect(lambda: self.put_signs(7, 0))
         bu71_ = self.gamefield.field_array[7][1]['butt']
-        bu71_.clicked.connect(lambda: self.put_signs(bu71_, 7, 1))
+        bu71_.clicked.connect(lambda: self.put_signs(7, 1))
         bu72_ = self.gamefield.field_array[7][2]['butt']
-        bu72_.clicked.connect(lambda: self.put_signs(bu72_, 7, 2))
+        bu72_.clicked.connect(lambda: self.put_signs(7, 2))
         bu73_ = self.gamefield.field_array[7][3]['butt']
-        bu73_.clicked.connect(lambda: self.put_signs(bu73_, 7, 3))
+        bu73_.clicked.connect(lambda: self.put_signs(7, 3))
         bu74_ = self.gamefield.field_array[7][4]['butt']
-        bu74_.clicked.connect(lambda: self.put_signs(bu74_, 7, 4))
+        bu74_.clicked.connect(lambda: self.put_signs(7, 4))
         bu75_ = self.gamefield.field_array[7][5]['butt']
-        bu75_.clicked.connect(lambda: self.put_signs(bu75_, 7, 5))
+        bu75_.clicked.connect(lambda: self.put_signs(7, 5))
         bu76_ = self.gamefield.field_array[7][6]['butt']
-        bu76_.clicked.connect(lambda: self.put_signs(bu76_, 7, 6))
+        bu76_.clicked.connect(lambda: self.put_signs(7, 6))
         bu77_ = self.gamefield.field_array[7][7]['butt']
-        bu77_.clicked.connect(lambda: self.put_signs(bu77_, 7, 7))
+        bu77_.clicked.connect(lambda: self.put_signs(7, 7))
         bu78_ = self.gamefield.field_array[7][8]['butt']
-        bu78_.clicked.connect(lambda: self.put_signs(bu78_, 7, 8))
+        bu78_.clicked.connect(lambda: self.put_signs(7, 8))
         bu79_ = self.gamefield.field_array[7][9]['butt']
-        bu79_.clicked.connect(lambda: self.put_signs(bu79_, 7, 9))
+        bu79_.clicked.connect(lambda: self.put_signs(7, 9))
         bu80_ = self.gamefield.field_array[8][0]['butt']
-        bu80_.clicked.connect(lambda: self.put_signs(bu80_, 8, 0))
+        bu80_.clicked.connect(lambda: self.put_signs(8, 0))
         bu81_ = self.gamefield.field_array[8][1]['butt']
-        bu81_.clicked.connect(lambda: self.put_signs(bu81_, 8, 1))
+        bu81_.clicked.connect(lambda: self.put_signs(8, 1))
         bu82_ = self.gamefield.field_array[8][2]['butt']
-        bu82_.clicked.connect(lambda: self.put_signs(bu82_, 8, 2))
+        bu82_.clicked.connect(lambda: self.put_signs(8, 2))
         bu83_ = self.gamefield.field_array[8][3]['butt']
-        bu83_.clicked.connect(lambda: self.put_signs(bu83_, 8, 3))
+        bu83_.clicked.connect(lambda: self.put_signs(8, 3))
         bu84_ = self.gamefield.field_array[8][4]['butt']
-        bu84_.clicked.connect(lambda: self.put_signs(bu84_, 8, 4))
+        bu84_.clicked.connect(lambda: self.put_signs(8, 4))
         bu85_ = self.gamefield.field_array[8][5]['butt']
-        bu85_.clicked.connect(lambda: self.put_signs(bu85_, 8, 5))
+        bu85_.clicked.connect(lambda: self.put_signs(8, 5))
         bu86_ = self.gamefield.field_array[8][6]['butt']
-        bu86_.clicked.connect(lambda: self.put_signs(bu86_, 8, 6))
+        bu86_.clicked.connect(lambda: self.put_signs(8, 6))
         bu87_ = self.gamefield.field_array[8][7]['butt']
-        bu87_.clicked.connect(lambda: self.put_signs(bu87_, 8, 7))
+        bu87_.clicked.connect(lambda: self.put_signs(8, 7))
         bu88_ = self.gamefield.field_array[8][8]['butt']
-        bu88_.clicked.connect(lambda: self.put_signs(bu88_, 8, 8))
+        bu88_.clicked.connect(lambda: self.put_signs(8, 8))
         bu89_ = self.gamefield.field_array[8][9]['butt']
-        bu89_.clicked.connect(lambda: self.put_signs(bu89_, 8, 9))
+        bu89_.clicked.connect(lambda: self.put_signs(8, 9))
         bu90_ = self.gamefield.field_array[9][0]['butt']
-        bu90_.clicked.connect(lambda: self.put_signs(bu90_, 9, 0))
+        bu90_.clicked.connect(lambda: self.put_signs(9, 0))
         bu91_ = self.gamefield.field_array[9][1]['butt']
-        bu91_.clicked.connect(lambda: self.put_signs(bu91_, 9, 1))
+        bu91_.clicked.connect(lambda: self.put_signs(9, 1))
         bu92_ = self.gamefield.field_array[9][2]['butt']
-        bu92_.clicked.connect(lambda: self.put_signs(bu92_, 9, 2))
+        bu92_.clicked.connect(lambda: self.put_signs(9, 2))
         bu93_ = self.gamefield.field_array[9][3]['butt']
-        bu93_.clicked.connect(lambda: self.put_signs(bu93_, 9, 3))
+        bu93_.clicked.connect(lambda: self.put_signs(9, 3))
         bu94_ = self.gamefield.field_array[9][4]['butt']
-        bu94_.clicked.connect(lambda: self.put_signs(bu94_, 9, 4))
+        bu94_.clicked.connect(lambda: self.put_signs(9, 4))
         bu95_ = self.gamefield.field_array[9][5]['butt']
-        bu95_.clicked.connect(lambda: self.put_signs(bu95_, 9, 5))
+        bu95_.clicked.connect(lambda: self.put_signs(9, 5))
         bu96_ = self.gamefield.field_array[9][6]['butt']
-        bu96_.clicked.connect(lambda: self.put_signs(bu96_, 9, 6))
+        bu96_.clicked.connect(lambda: self.put_signs(9, 6))
         bu97_ = self.gamefield.field_array[9][7]['butt']
-        bu97_.clicked.connect(lambda: self.put_signs(bu97_, 9, 7))
+        bu97_.clicked.connect(lambda: self.put_signs(9, 7))
         bu98_ = self.gamefield.field_array[9][8]['butt']
-        bu98_.clicked.connect(lambda: self.put_signs(bu98_, 9, 8))
+        bu98_.clicked.connect(lambda: self.put_signs(9, 8))
         bu99_ = self.gamefield.field_array[9][9]['butt']
-        bu99_.clicked.connect(lambda: self.put_signs(bu99_, 9, 9))
+        bu99_.clicked.connect(lambda: self.put_signs(9, 9))
         ''' Конец позорного костыля
         '''
 
