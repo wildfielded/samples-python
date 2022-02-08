@@ -9,8 +9,8 @@ from sys import exit
 FIELD_ROWS = 10
 FIELD_COLS = 10
 POS_LIST = [(row, col) for row in range(FIELD_ROWS) for col in range(FIELD_COLS)]
-DUDE_WEIGHTS = (5, 4, 3, 2, 1)
-COMP_WEIGHTS = (10, 8, 6, 4, 2)
+DUDE_WEIGHTS = (10, 8, 6, 4, 2)
+COMP_WEIGHTS = (5, 4, 3, 2, 1)
 
 
 #####=====----- Classes -----=====#####
@@ -38,39 +38,41 @@ def print_field(array_):
         str_ += (str(col_) + ' ')
     print(str_)
     print('   | | | | | | | | | |')
-    rn_ = 0
+    row_num_ = 0
     for row_ in array_:
-        str_ = str(rn_) + '--'
+        tmp_str_ = str(row_num_) + '--'
         for cell_ in row_:
-            str_ += (cell_['xo'] + ' ')
-        rn_ += 1
-        print(str_)
+            tmp_str_ += (cell_['xo'] + ' ')
+        row_num_ += 1
+        print(tmp_str_)
 
-def write_weights(array_, r_, c_, xo_):
+def write_weights(array_, row_, col_, xo_):
+    ''' Запись весовых коэффициентов в атрибут ['xo'] объектов клеток поля.
+    '''
     if xo_ == 'X':
         weights_tuple_ = DUDE_WEIGHTS
     else:
         weights_tuple_ = COMP_WEIGHTS
-    array_[r_][c_]['weight'] += weights_tuple_[0]
+    array_[row_][col_]['weight'] += weights_tuple_[0]
     for s_ in range(1, 5):
-        if c_ + s_ in range(FIELD_COLS):
-            array_[r_][c_ + s_]['weight'] += weights_tuple_[s_]
-        if c_ - s_ in range(FIELD_COLS):
-            array_[r_][c_ - s_]['weight'] += weights_tuple_[s_]
-        if r_ + s_ in range(FIELD_ROWS):
-            array_[r_ + s_][c_]['weight'] += weights_tuple_[s_]
-        if r_ - s_ in range(FIELD_ROWS):
-            array_[r_ - s_][c_]['weight'] += weights_tuple_[s_]
-        if (r_ + s_ in range(FIELD_ROWS)) and (c_ + s_ in range(FIELD_COLS)):
-            array_[r_ + s_][c_ + s_]['weight'] += weights_tuple_[s_]
-        if (r_ + s_ in range(FIELD_ROWS)) and (c_ - s_ in range(FIELD_COLS)):
-            array_[r_ + s_][c_ - s_]['weight'] += weights_tuple_[s_]
-        if (r_ - s_ in range(FIELD_ROWS)) and (c_ + s_ in range(FIELD_COLS)):
-            array_[r_ - s_][c_ + s_]['weight'] += weights_tuple_[s_]
-        if (r_ - s_ in range(FIELD_ROWS)) and (c_ - s_ in range(FIELD_COLS)):
-            array_[r_ - s_][c_ - s_]['weight'] += weights_tuple_[s_]
+        if col_ + s_ in range(FIELD_COLS):
+            array_[row_][col_ + s_]['weight'] += weights_tuple_[s_]
+        if col_ - s_ in range(FIELD_COLS):
+            array_[row_][col_ - s_]['weight'] += weights_tuple_[s_]
+        if row_ + s_ in range(FIELD_ROWS):
+            array_[row_ + s_][col_]['weight'] += weights_tuple_[s_]
+        if row_ - s_ in range(FIELD_ROWS):
+            array_[row_ - s_][col_]['weight'] += weights_tuple_[s_]
+        if (row_ + s_ in range(FIELD_ROWS)) and (col_ + s_ in range(FIELD_COLS)):
+            array_[row_ + s_][col_ + s_]['weight'] += weights_tuple_[s_]
+        if (row_ + s_ in range(FIELD_ROWS)) and (col_ - s_ in range(FIELD_COLS)):
+            array_[row_ + s_][col_ - s_]['weight'] += weights_tuple_[s_]
+        if (row_ - s_ in range(FIELD_ROWS)) and (col_ + s_ in range(FIELD_COLS)):
+            array_[row_ - s_][col_ + s_]['weight'] += weights_tuple_[s_]
+        if (row_ - s_ in range(FIELD_ROWS)) and (col_ - s_ in range(FIELD_COLS)):
+            array_[row_ - s_][col_ - s_]['weight'] += weights_tuple_[s_]
 
-def check_five(array_, row_, col_, xo_):
+def check_line(array_, row_, col_, xo_):
     ''' Проверяет наличие пяти X или O в линию и прекращает игру, если есть.
     '''
     horiz_line_ = ''
@@ -116,7 +118,7 @@ def dude_answer(array_, row_, col_):
     '''
     array_[row_][col_]['xo'] = 'X'
     write_weights(array_, row_, col_, 'X')
-    check_five(array_, row_, col_, 'X')
+    check_line(array_, row_, col_, 'X')
 
 def comp_answer(array_):
     ''' Ход компьютера. Отбирает свободные клетки с минимальным весом и уже
@@ -139,7 +141,7 @@ def comp_answer(array_):
     (r_, c_) = choice(candidates_)
     array_[r_][c_]['xo'] = 'O'
     write_weights(array_, r_, c_, 'O')
-    check_five(array_, r_, c_, 'O')
+    check_line(array_, r_, c_, 'O')
 
 def put_signs(array_, str_):
     ''' Принимает строку выбора игрока и делает ход компьютера
