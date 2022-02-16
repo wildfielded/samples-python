@@ -23,8 +23,11 @@
 ## Решение ##
 
 [**`main.py`**](https://github.com/wildfielded/samples-python/blob/master/YLabTrain3/main.py) -
-Требует установки:    
+Требует установки вэб-сервера Bottle:    
 ~~~
-pip install PyQt5
+pip install bottle
 ~~~
+
+После запуска **`main.py`** в консоли открыть в браузере URL:[**` http://127.0.0.1:8080 `**](http://127.0.0.1:8080).
+
 ----
