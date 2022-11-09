@@ -1,6 +1,6 @@
 # Python scripting examples for references #
 
-:ru: [Version in Russian](README_RU.md)
+:ru: [Русская версия здесь](README_RU.md)
 
 ### The most interesting solutions for training exercises and test tasks ###
 
