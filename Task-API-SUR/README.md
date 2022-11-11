@@ -74,6 +74,26 @@ with `run` target to run the made API on port 8080.
 
 ## Task solution ##
 
+- To fit the deadlines, it was decided to use a simple **Bottle** web server and
+SQLite DBMS instead of **Django** and **PostgreSQL**.
+
+- For simplicity, the age of majority check assumes that the birth date has
+already been pre-formatted and that the `birth` field contains a string of
+numbers in the format `YYYY-MM-DD`.
+
+- The **SQLite3** database contains two tables. The **`Users`** table stores all
+user data. The **`Errors`** table has a minimal pre-set of error variants, which
+can be expanded for future requirements.
+
+- Due to clear criteria for uniqueness still need to be defined, the first API
+method does not check for uniqueness when registering a user (wether such a user
+already exists in the database).
+
+- The third API method returns a **json** with all fields except `uid` and
+`password`. If the user has `NULL` in the optional `email` and/or `tg` table
+columns, then the corresponding **json** fields contain `null`. If desired, we
+can exclude the output of such fields.
+
 [:arrow_up: Contents](#contents)
 
 ----
