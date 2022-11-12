@@ -100,6 +100,18 @@ can exclude the output of such fields.
 
 ## Results ##
 
+[**`api_module.py`**](api_module.py)&nbsp;&mdash; main module with API methods.
+
+[**`api_validations.py`**](api_validations.py)&nbsp;&mdash; additional module
+for incoming data validation checks. It contains functional blanks for
+validating input data, which can be modified when additional requirements appear.
+
+[**`api_demo.py`**](api_demo.py)&nbsp;&mdash; script to run application and
+demonstrate API on port 8080 in virtual environment.
+
+[**`sqlite/db.sql`**](sqlite/db.sql)&nbsp;&mdash; SQL-script to create database
+file **`sqlite/db.sqlite3`**.
+
 [:arrow_up: Contents](#contents)
 
 ----
