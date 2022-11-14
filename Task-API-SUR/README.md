@@ -2,8 +2,8 @@
 
 :ru: [Русская версия здесь](README_RU.md)
 
-![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
-![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white)
+![Python](https://img.shields.io/badge/python-3670A0?style=plastic&logo=python&logoColor=ffdd54)
+![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?style=plastic&logo=sqlite&logoColor=white)
 **`Bottle`**
 
 ----
@@ -117,6 +117,72 @@ file **`sqlite/db.sqlite3`**.
 ----
 
 ## Demo instructions ##
+
+1. Required **Python** version 3.8 or later, with actual **pip** manager.
+2. Install **SQLite3** using the [Linux](https://linoxide.com/install-use-sqlite-linux)
+or [Windows](https://www.sqlitetutorial.net/download-install-sqlite/) manuals.
+3. Download the project files from the current directory of the repository to
+the local directory of the computer.
+4. To create the `sqlite/db.sqlite3` database file, enter the `sqlite`
+subdirectory, run **SQLite**, and then enter the following meta-commands:
+
+    ```bash
+    # Start sqlite3
+    sqlite3 db.sqlite3
+
+    # Meta-commands
+    .read db.sql
+    .exit
+    ```
+
+5. An example sequence of commands in the terminal console to run the project in
+the `virtualenv` virtual environment in the local directory:
+
+    ```bash
+    python -m venv VENV
+
+    # For Linux:
+    source VENV/bin/activate
+    # For Windows:
+    VENV\Scripts\activate
+
+    pip install -r requirements.txt
+
+    python api_demo.py
+    # Exit on Ctrl+C
+
+    # Exit from virtual environment
+    # For Linux:
+    deactivate
+    # For Windows:
+    VENV\Scripts\deactivate.bat
+    ```
+
+6. You can use the [**`HTTPie`**](https://httpie.io/) package (or anything else
+you like) for PoC. If it is not in your OS, you can additionally install it in a
+separate console with the same virtual environment:
+
+    ```bash
+    pip install httpie
+    ```
+
+    and make requests to check the first method:
+
+    ```bash
+    http POST http://127.0.0.1:8080/v1/auth/register phone="+79167003020" login="rubella19" password="1Qwerty!" name="Анастасия" birth="2000-07-28" tg="\@Rubella19" email="anastasia.a.krasnova@gmail.com"
+    ```
+
+    to check the second method:
+
+    ```bash
+    http POST http://127.0.0.1:8080/v1/auth/login login="rubella19" password="1Qwerty!"
+    ```
+
+    to check the third method:
+
+    ```bash
+    http GET http://127.0.0.1:8080/v1/user?id=00000000-2222-2222-2222-000000000000
+    ```
 
 [:arrow_up: Contents](#contents)
 
