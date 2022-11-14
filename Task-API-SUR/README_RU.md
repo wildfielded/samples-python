@@ -5,6 +5,7 @@
 ![Python](https://img.shields.io/badge/python-3670A0?style=plastic&logo=python&logoColor=ffdd54)
 ![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?style=plastic&logo=sqlite&logoColor=white)
 **`Bottle`**
+**`SQLAlchemy`**
 
 ----
 
@@ -128,7 +129,7 @@ API на порту 8080 в виртуальном окружении.
 3. Скачать файлы проекта из текущей директории репозитория в локальную
 директорию компьютера.
 4. Для создания файла БД `sqlite/db.sqlite3` войти в поддиректорию `sqlite`,
-запустить **SQLite** и потом ввести мета-команды:
+запустить **SQLite3** и потом ввести мета-команды:
 
     ```bash
     # Запуск

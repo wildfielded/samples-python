@@ -5,6 +5,7 @@
 ![Python](https://img.shields.io/badge/python-3670A0?style=plastic&logo=python&logoColor=ffdd54)
 ![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?style=plastic&logo=sqlite&logoColor=white)
 **`Bottle`**
+**`SQLAlchemy`**
 
 ----
 
@@ -75,7 +76,7 @@ with `run` target to run the made API on port 8080.
 ## Task solution ##
 
 - To fit the deadlines, it was decided to use a simple **Bottle** web server and
-SQLite DBMS instead of **Django** and **PostgreSQL**.
+**SQLite3** DBMS instead of **Django** and **PostgreSQL**.
 
 - For simplicity, the age of majority check assumes that the birth date has
 already been pre-formatted and that the `birth` field contains a string of
@@ -124,7 +125,7 @@ or [Windows](https://www.sqlitetutorial.net/download-install-sqlite/) manuals.
 3. Download the project files from the current directory of the repository to
 the local directory of the computer.
 4. To create the `sqlite/db.sqlite3` database file, enter the `sqlite`
-subdirectory, run **SQLite**, and then enter the following meta-commands:
+subdirectory, run **SQLite3**, and then enter the following meta-commands:
 
     ```bash
     # Start sqlite3
