@@ -1,6 +1,6 @@
 __pycache__/
 .idea/
-*.ipynb
+##### *.ipynb
 *.ipynb_checkpoints/
 test.py
 main.py_BAK
