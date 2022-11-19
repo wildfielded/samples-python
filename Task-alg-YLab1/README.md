@@ -1,4 +1,4 @@
-# Postman's the shortest way calculation #
+# Dron's the shortest route calculation #
 
 :ru: [Русская версия здесь](README_RU.md)
 
