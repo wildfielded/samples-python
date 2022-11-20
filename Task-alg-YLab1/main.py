@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 
-#####=====----- Variables -----=====#####
-
+''' =====----- Global variables -----===== '''
 post = {'id': 0, 'coords': (0, 2), 'descr': 'Почтовое отделение'}
 point1 = {'id': 1, 'coords': (2, 5), 'descr': 'Ул. Грибоедова, 104/25'}
 point2 = {'id': 2, 'coords': (5, 2), 'descr': 'Ул. Бейкер стрит, 221б'}
@@ -14,8 +13,7 @@ all_routes = []
 ALLOWED_DELTA = 0.01
 
 
-#####=====----- Functions -----=====#####
-
+''' =====----- Functions -----===== '''
 def create_distance_array(point_list_):
     ''' Создаёт диагонально-симметричную матрицу всех расстояний между всеми
         точками. Расстояние от A до B и расстояние от B до A вычисляется один раз.
@@ -31,6 +29,7 @@ def create_distance_array(point_list_):
             dist_array_[s_][f_] = dist_array_[f_][s_] = calc_dist(point_list_[s_], point_list_[f_])
     return dist_array_
 
+
 def multiply_list(set_: set={}, list_: list=[]):
     ''' Размножает список на элементы, в которых последовательно (с применением
         генератора) к исходному списку добавляется один член из множества.
@@ -40,6 +39,7 @@ def multiply_list(set_: set={}, list_: list=[]):
     for item_ in (s_ for s_ in set_):
         output_list_.append(list_ + [item_])
     return output_list_
+
 
 def find_routes(set_: set={}, list_: list=[]):
     ''' Создаёт список всех возможных последовательностей (маршрутов) посещения
@@ -65,6 +65,7 @@ def find_routes(set_: set={}, list_: list=[]):
         result_list_ += multiply_list(set_)
         find_routes(set_, result_list_)
 
+
 def calc_distance(route_list_, distance_array_):
     ''' Для данного маршрутного листа суммирует расстояния из матрицы расстояний,
         добавляя расстояния от почты до первой и последней точки маршрута.
@@ -73,6 +74,7 @@ def calc_distance(route_list_, distance_array_):
     for d_ in range(len(route_list_) - 1):
         distance_ += distance_array_[route_list_[d_]][route_list_[d_+1]]
     return distance_
+
 
 def get_shorty(route_list_, point_list_, distance_array_, allowed_delta_):
     ''' Находит кратчайший маршрут. Дополнительно находит маршруты, близкие к
@@ -95,6 +97,7 @@ def get_shorty(route_list_, point_list_, distance_array_, allowed_delta_):
                 min_route_.append(route_)
     return min_route_
 
+
 def write_string(list_, point_list_, distance_array_):
     ''' Из маршрутного листа формирует строку в требуемом формате.
         Если для почтальона надо представлять маршрут в более читабельном виде
@@ -115,6 +118,7 @@ def write_string(list_, point_list_, distance_array_):
     output_str_ += ' -> {}[{}] = {}'.format(p_, d_, d_)
     return output_str_
 
+
 def output_result(short_list_, point_list_, distance_array_):
     ''' Вывод результата работы программы с некоторым расширением к заданию.
         А именно: дополнительно выводит альтернативные маршруты (если есть),
@@ -129,12 +133,11 @@ def output_result(short_list_, point_list_, distance_array_):
     return output_str_
 
 
-#####=====----- MAIN -----=====#####
-
+''' =====----- MAIN -----===== '''
 if __name__ == '__main__':
     distance_array = create_distance_array(point_list)
     find_routes(point_set)
     short_list = get_shorty(all_routes, point_list, distance_array, ALLOWED_DELTA)
     print(output_result(short_list, point_list, distance_array))
 
-#####=====----- THE END -----=====########################################
+#####=====----- THE END -----=====#########################################
