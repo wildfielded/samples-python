@@ -1,4 +1,4 @@
-# Dron's the shortest route calculation #
+# Calculating the shortest path for a drone #
 
 :ru: [Русская версия здесь](README_RU.md)
 
