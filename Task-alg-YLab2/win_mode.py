@@ -46,7 +46,7 @@ class GameField():
             self.field_array[pos_[0]][pos_[1]]['pos'] = pos_
 
 
-class OwenWindow(QWidget):
+class MainWindow(QWidget):
     ''' Основное окно игры
     '''
     def __init__(self):
@@ -228,7 +228,7 @@ class OwenWindow(QWidget):
 
 if __name__ == '__main__':
     app_ = QApplication([])
-    prog_window_ = OwenWindow()
+    prog_window_ = MainWindow()
     prog_window_.show()
     sys.exit(app_.exec_())
 
