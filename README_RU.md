@@ -8,7 +8,7 @@
 
 ## Тестовые задания ##
 
-1. [**`Task-alg-YLab1`**](https://github.com/wildfielded/samples-python/tree/master/Task-alg-YL1)&nbsp;&mdash;
+1. [**`Task-alg-YL1`**](https://github.com/wildfielded/samples-python/tree/master/Task-alg-YL1)&nbsp;&mdash;
 Модифицированная задача почтальона/курьера (алгоритм вычисления кратчайшего пути для дрона).
 
     ![Python](https://img.shields.io/badge/python-3670A0?style=plastic&logo=python&logoColor=ffdd54)

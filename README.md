@@ -8,7 +8,7 @@
 
 ## Test tasks ##
 
-1. [**`Task-alg-YLab1`**](https://github.com/wildfielded/samples-python/tree/master/Task-alg-YL1)&nbsp;&mdash;
+1. [**`Task-alg-YL1`**](https://github.com/wildfielded/samples-python/tree/master/Task-alg-YL1)&nbsp;&mdash;
 Calculating the shortest path for a drone (Algorithms).
 
     ![Python](https://img.shields.io/badge/python-3670A0?style=plastic&logo=python&logoColor=ffdd54)

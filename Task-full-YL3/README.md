@@ -22,8 +22,7 @@
 ----
 ## Решение ##
 
-[**`main.py`**](https://github.com/wildfielded/samples-python/blob/master/YLabTrain3/main.py) -
-Требует установки вэб-сервера Bottle:    
+[**`main.py`**](main.py) - Требует установки вэб-сервера Bottle:    
 ~~~
 pip install bottle
 ~~~
