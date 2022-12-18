@@ -37,6 +37,16 @@ and its coordinates set. Ones need to find the shortest route to fly around.
 the routes with the output of intermediate distances for each point (from the
 start to the current point) and the total length of the route.
 
+- The point coordinates following each other must show the shortest path found,
+indicating the intermediate path length for each next point. The total length of
+the entire route is indicated after the equal sign.
+
+- That is, the result of the program must be formatted as follows:
+
+    ```text
+    (0, 1) -> (1, 4)[3.1622776601683795] -> (4, 1)[7.404918347287664] -> (5, 5)[11.528023972905324] -> (7, 2)[15.133575248369313] -> (0, 1)[22.204643060234787] = 22.204643060234787
+    ```
+
 [:arrow_up: Contents](#contents)
 
 ----
