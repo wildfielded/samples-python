@@ -53,11 +53,11 @@ the entire route is indicated after the equal sign.
 
 ## Task solution ##
 
-The total number **$N$** of all possible routes is calculated by the formula
-**$N=(n-1)!$**, where **$n$**&nbsp;&mdash; number of all destination points.
+The total number of all possible routes **$N$** is calculated by the formula
+**$N=(n-1)!$**, where **$n$** is number of all destination points.
 
 The number of possible routes to fly around destinations for a given map:
-**$(5-1)! = 4! = 24 routes$**. Then, the program finds the shortest route and
+**$(5-1)! = 4! = 24$** routes. Then, the program finds the shortest route and
 outputs the sequence of points that make it up.
 
 To search for such a route, program will calculate the distances between the
@@ -66,9 +66,9 @@ it is necessary to find the shortest length by iterating over all possible
 routes.
 
 The formula for the distance between two points on a plane is derived from the
-Pythagorean theorem: $$l=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2},$$ where **$x_1$** and
-**$y_1$**&nbsp;&mdash; coordinates of the first point, **$x_2$** and
-**$y_2$**&nbsp;&mdash; coordinates of the second point respectively.
+Pythagorean theorem: $$L=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2},$$ where **$x_1$**,
+**$y_1$**, **$x_2$** and **$y_2$** are coordinates of the first and
+second points respectively.
 
 [:arrow_up: Contents](#contents)
 
