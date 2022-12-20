@@ -85,6 +85,29 @@ path.
 
 ## Demo instructions ##
 
+1. Required **Python** version **3.8** or later, with actual **pip** manager.
+2. Download project files from the current directory of the repository to a
+local directory of the computer.
+3. An example command sequence in the terminal console to run the project in the
+`virtualenv` virtual environment in local directory:
+
+    ```bash
+    python -m venv VENV
+
+    # For Linux:
+    source VENV/bin/activate
+    # For Windows:
+    VENV\Scripts\activate
+
+    python main.py
+
+    # Exit from virtual environment
+    # For Linux:
+    deactivate
+    # For Windows:
+    VENV\Scripts\deactivate.bat
+    ```
+
 [:arrow_up: Contents](#contents)
 
 ----
