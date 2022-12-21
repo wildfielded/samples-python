@@ -70,6 +70,10 @@ Pythagorean theorem: $$L=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2},$$ where **$x_1$**,
 **$y_1$**, **$x_2$** and **$y_2$** are coordinates of the first and
 second points respectively.
 
+In addition to the found shortest route, the program displays routes that are
+equal to the shortest one or close to it in length (i.e., the difference does
+not exceed the value specified by the **`ALLOWED_DELTA`** constant).
+
 [:arrow_up: Contents](#contents)
 
 ----
