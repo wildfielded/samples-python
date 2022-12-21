@@ -11,12 +11,12 @@
 
 ## Contents ##
 
-[1. Task conditions](#task-conditions)    
-[2. Task solution](#task-solution)    
+[1. Conditions](#conditions)    
+[2. Solution](#solution)    
 [3. Results](#results)    
 [4. Demo instructions](#demo-instructions)    
 
-## Task conditions ##
+## Conditions ##
 
 Implement REST API with three http-methods:
 
@@ -73,7 +73,7 @@ with `run` target to run the made API on port 8080.
 
 ----
 
-## Task solution ##
+## Solution ##
 
 - To fit the deadlines, it was decided to use a simple **Bottle** web server and
 **SQLite3** DBMS instead of **Django** and **PostgreSQL**.

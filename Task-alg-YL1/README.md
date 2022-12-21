@@ -8,8 +8,8 @@
 
 ## Contents ##
 
-[1. Conditions](#task-conditions)    
-[2. Solution](#task-solution)    
+[1. Conditions](#conditions)    
+[2. Solution](#solution)    
 [3. Results](#results)    
 [4. Demo instructions](#demo-instructions)    
 
