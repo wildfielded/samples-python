@@ -8,12 +8,12 @@
 
 ## Contents ##
 
-[1. Task conditions](#task-conditions)    
-[2. Task solution](#task-solution)    
+[1. Conditions](#task-conditions)    
+[2. Solution](#task-solution)    
 [3. Results](#results)    
 [4. Demo instructions](#demo-instructions)    
 
-## Task conditions ##
+## Conditions ##
 
 - Develop a program to calculate the shortest path for a mail drone to fly. The
 drone starts from the post office, flies around all the recipients once to
@@ -51,7 +51,7 @@ the entire route is indicated after the equal sign.
 
 ----
 
-## Task solution ##
+## Solution ##
 
 The total number of all possible routes **$N$** is calculated by the formula
 **$N=(n-1)!$**, where **$n$** is number of all destination points.
