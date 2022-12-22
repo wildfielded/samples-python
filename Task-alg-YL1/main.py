@@ -14,10 +14,14 @@ ALLOWED_DELTA = 0.01
 
 
 ''' =====----- Functions -----===== '''
-def create_distance_array(point_list_):
+def create_distance_array(point_list_: list) -> list:
     ''' Создаёт диагонально-симметричную матрицу всех расстояний между всеми
-        точками. Расстояние от A до B и расстояние от B до A вычисляется один раз.
-        То есть, как положено, для 5 точек вычисляется 4+3+2+1=10 расстояний.
+    точками. Расстояние от A до B и расстояние от B до A вычисляется один раз.
+    То есть, как положено, для 5 точек вычисляется 4+3+2+1=10 расстояний.
+    
+    Creates a diagonally symmetrical array (matrix) of all distances between all
+    points. The distance from A to B and the distance from B to A are calculated
+    once. That is, for 5 points 4+3+2+1=10 distances are calculated.
     '''
     calc_dist = lambda a, b : ((a['coords'][0] - b['coords'][0]) ** 2 + (a['coords'][1] - b['coords'][1]) ** 2) ** 0.5
     len_ = len(point_list_)
