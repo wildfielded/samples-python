@@ -22,6 +22,10 @@ def create_distance_array(point_list_: list) -> list:
     Creates a diagonally symmetrical array (matrix) of all distances between all
     points. The distance from A to B and the distance from B to A are calculated
     once. That is, for 5 points 4+3+2+1=10 distances are calculated.
+    Arguments:
+        point_list_ [list] -- List of dictionaries with points attributes
+    Returns:
+        dist_array_ [list] -- Array (list of lists) of calculated distances
     '''
     calc_dist = lambda a, b : ((a['coords'][0] - b['coords'][0]) ** 2 + (a['coords'][1] - b['coords'][1]) ** 2) ** 0.5
     len_ = len(point_list_)
