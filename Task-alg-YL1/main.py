@@ -42,10 +42,20 @@ def create_distance_array(point_list_: list) -> list:
     return distance_array_
 
 
-def multiply_list(set_: set={}, list_: list=[]):
-    ''' Размножает список на элементы, в которых последовательно (с применением
-        генератора) к исходному списку добавляется один член из множества.
-        Выводит список полученных списков.
+def multiply_list(set_: set, list_: list=[]) -> list:
+    ''' Called in find_routes().
+    Multiplies the list into elements in which one member from the set is added
+    sequentially to the initial list (using a generator).
+
+    Используется в find_routes().
+    Размножает список на элементы, в которых последовательно (с применением
+    генератора) к исходному списку добавляется один член из множества.
+    Arguments:
+        set_ [set] -- Множество, содержащее идентификаторы (id) точек назначения
+        list_ [list] [optional] -- Список списков id точек назначения, созданный
+            внутри рекурсии find_routes() (необязательный аргумент)
+    Returns:
+        output_list_ [list] -- Список полученных списков
     '''
     output_list_ = []
     for item_ in (s_ for s_ in set_):
