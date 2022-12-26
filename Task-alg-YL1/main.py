@@ -9,7 +9,7 @@ point4 = {'id': 4, 'coords': (8, 3), 'descr': 'Вечнозелёная Алле
 
 point_list = [post, point1, point2, point3, point4]
 point_set = set([point_['id'] for point_ in point_list[1:]])
-all_routes = []
+ALL_ROUTES = []
 ALLOWED_DELTA = 0.01
 
 
@@ -67,7 +67,7 @@ def find_routes(set_: set={}, list_: list=[]):
     ''' Создаёт список всех возможных последовательностей (маршрутов) посещения
         точек по их номерам (id). Каждый маршрут тоже в виде списка без начальной
         и конечной точки id=0 (почты). Используется рекурсия, результат заносится
-        в глобальную переменную all_routes.
+        в глобальную переменную ALL_ROUTES.
     '''
     result_list_ = []
     if len(list_) > 0:
@@ -81,8 +81,8 @@ def find_routes(set_: set={}, list_: list=[]):
             result_list_ = tmp_list_
             find_routes(set_, result_list_)
         else:
-            global all_routes
-            all_routes = list_
+            global ALL_ROUTES
+            ALL_ROUTES = list_
     else:
         result_list_ += multiply_list(set_)
         find_routes(set_, result_list_)
@@ -159,7 +159,7 @@ def output_result(short_list_, point_list_, distance_array_):
 if __name__ == '__main__':
     distance_array = create_distance_array(point_list)
     find_routes(point_set)
-    short_list = get_shorty(all_routes, point_list, distance_array, ALLOWED_DELTA)
+    short_list = get_shorty(ALL_ROUTES, point_list, distance_array, ALLOWED_DELTA)
     print(output_result(short_list, point_list, distance_array))
 
 #####=====----- THE END -----=====#########################################
