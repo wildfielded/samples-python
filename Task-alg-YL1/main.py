@@ -25,18 +25,21 @@ def create_distance_array(point_list_: list) -> list:
     Arguments:
         point_list_ [list] -- Список словарей с атрибутами точек назначения
     Returns:
-        dist_array_ [list] -- Массив (список списков) расстояний между точками
-            назначения
+        distance_array_ [list] -- Массив (список списков) расстояний между
+            точками назначения
     '''
-    calc_dist = lambda a, b : ((a['coords'][0] - b['coords'][0]) ** 2 + (a['coords'][1] - b['coords'][1]) ** 2) ** 0.5
+    calc_dist = lambda a, b : ((a['coords'][0] - b['coords'][0]) ** 2 + \
+                               (a['coords'][1] - b['coords'][1]) ** 2) ** 0.5
     len_ = len(point_list_)
-    dist_array_ = [[0 for col_ in range(len_)] for raw_ in range(len_)]
+    distance_array_ = [[0 for col_ in range(len_)] for raw_ in range(len_)]
     for start_point_ in point_list_:
         s_ = start_point_['id']
         for finish_point_ in point_list_[s_+1:]:
             f_ = finish_point_['id']
-            dist_array_[s_][f_] = dist_array_[f_][s_] = calc_dist(point_list_[s_], point_list_[f_])
-    return dist_array_
+            distance_array_[s_][f_] \
+                = distance_array_[f_][s_] \
+                = calc_dist(point_list_[s_], point_list_[f_])
+    return distance_array_
 
 
 def multiply_list(set_: set={}, list_: list=[]):
