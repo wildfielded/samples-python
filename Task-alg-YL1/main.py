@@ -63,11 +63,22 @@ def multiply_list(set_: set, list_: list=[]) -> list:
     return output_list_
 
 
-def find_routes(set_: set={}, list_: list=[]):
-    ''' Создаёт список всех возможных последовательностей (маршрутов) посещения
-        точек по их номерам (id). Каждый маршрут тоже в виде списка без начальной
-        и конечной точки id=0 (почты). Используется рекурсия, результат заносится
-        в глобальную переменную ALL_ROUTES.
+def find_routes(set_: set, list_: list=[]) -> list:
+    ''' Recursion is used.
+    Changes the global variable ALL_ROUTES, where it writes the created list of
+    all possible sequences (routes) of destination points by their numbers (id).
+    Each route is also a list without the start and end point (post office with
+    id=0).
+
+    Используется рекурсия.
+    Изменяет глобальную переменную ALL_ROUTES, в которую заносит созданный
+    список всех возможных последовательностей (маршрутов) посещения точек по их
+    номерам (id). Каждый маршрут тоже в виде списка без начальной и
+    конечной точки с id=0 (почты).
+    Arguments:
+        set_ [set] -- Множество, содержащее идентификаторы (id) точек назначения
+        list_ [list] [optional] -- Список списков id точек назначения
+            (необязательный аргумент)
     '''
     result_list_ = []
     if len(list_) > 0:
