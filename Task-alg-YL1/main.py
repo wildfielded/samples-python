@@ -28,8 +28,9 @@ def create_distance_array(point_list_: list) -> list:
         distance_array_ [list] -- Массив (список списков) расстояний между
             точками назначения
     '''
-    calc_dist = lambda a, b : ((a['coords'][0] - b['coords'][0]) ** 2 + \
-                               (a['coords'][1] - b['coords'][1]) ** 2) ** 0.5
+    calc_dist = lambda a, b : (   (a['coords'][0] - b['coords'][0]) ** 2
+                                + (a['coords'][1] - b['coords'][1]) ** 2
+                              ) ** 0.5
     len_ = len(point_list_)
     distance_array_ = [[0 for col_ in range(len_)] for raw_ in range(len_)]
     for start_point_ in point_list_:
@@ -115,7 +116,9 @@ def calc_distance(route_list_: list, distance_array_: list) -> float:
     Returns:
         distance_ [float] -- Итоговая длина маршрута
     '''
-    distance_ = (distance_array_[0][route_list_[0]] + distance_array_[0][route_list_[-1]])
+    distance_ = (     distance_array_[0][route_list_[0]]
+                    + distance_array_[0][route_list_[-1]]
+                )
     for d_ in range(len(route_list_) - 1):
         distance_ += distance_array_[route_list_[d_]][route_list_[d_+1]]
     return distance_
