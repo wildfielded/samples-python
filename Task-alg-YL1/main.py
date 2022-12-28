@@ -124,13 +124,26 @@ def calc_distance(route_list_: list, distance_array_: list) -> float:
     return distance_
 
 
-def get_shorty(route_list_, point_list_, distance_array_, allowed_delta_):
-    ''' Находит кратчайший маршрут. Дополнительно находит маршруты, близкие к
-        к нему по расстоянию (квадрат разницы меньше заданной дельты).
+def get_shorty(point_list_: list, distance_array_: list) -> list:
+    ''' Finds the shortest route from global variable ALL_ROUTES. Additionally,
+    it finds routes that are close to the shortest one in distance (the square
+    of the difference is less than global variable ALLOWED_DELTA).
+
+    Из всех маршрутов в ALL_ROUTES находит кратчайший маршрут. Дополнительно
+    находит маршруты, близкие к нему по расстоянию (квадрат разницы меньше
+    ALLOWED_DELTA).
+    Arguments:
+        point_list_ [list] -- Список словарей с атрибутами точек назначения
+        distance_array_ [list] -- Массив (список списков) расстояний между
+            точками назначения
+    Returns:
+        min_route_ [list] -- Список списков с последовательностями id точек
+            назначения (без начальной и конечной точек - почты) первого
+            кратчайшего пути и близких к нему по сумме расстояний.
     '''
     min_route_ = []
     min_dist_ = 0.0
-    for route_ in route_list_:
+    for route_ in ALL_ROUTES:
         length_ = calc_distance(route_, distance_array_)
         if min_dist_:
             if length_ < min_dist_:
@@ -138,10 +151,10 @@ def get_shorty(route_list_, point_list_, distance_array_, allowed_delta_):
                 min_route_ = [route_]
         else:
             min_dist_ = length_
-    for route_ in route_list_:
+    for route_ in ALL_ROUTES:
         if route_ != min_route_[0]:
             length_ = calc_distance(route_, distance_array_)
-            if (length_ - min_dist_) ** 2 < allowed_delta_:
+            if (length_ - min_dist_) ** 2 < ALLOWED_DELTA:
                 min_route_.append(route_)
     return min_route_
 
@@ -185,7 +198,7 @@ def output_result(short_list_, point_list_, distance_array_):
 if __name__ == '__main__':
     distance_array = create_distance_array(point_list)
     find_routes(point_set)
-    short_list = get_shorty(ALL_ROUTES, point_list, distance_array, ALLOWED_DELTA)
+    short_list = get_shorty(point_list, distance_array)
     print(output_result(short_list, point_list, distance_array))
 
 #####=====----- THE END -----=====#########################################
