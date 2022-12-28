@@ -172,11 +172,11 @@ def write_string(list_, point_list_, distance_array_):
         dist_sum_ += distance_array_[list_[r_]][list_[r_+1]]
         p_ = str(point_list_[list_[r_+1]]['coords'])
         d_ = str(dist_sum_)
-        output_str_ += ' -> {}[{}]'.format(p_, d_)
+        output_str_ += f' -> {p_}[{d_}]'
     dist_sum_ += distance_array_[list_[-2]][0]
     p_ = str(point_list_[0]['coords'])
     d_ = str(dist_sum_)
-    output_str_ += ' -> {}[{}] = {}'.format(p_, d_, d_)
+    output_str_ += f' -> {p_}[{d_}] = {d_}'
     return output_str_
 
 
