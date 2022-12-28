@@ -63,7 +63,7 @@ def multiply_list(set_: set, list_: list=[]) -> list:
     return output_list_
 
 
-def find_routes(set_: set, list_: list=[]) -> list:
+def find_routes(set_: set, list_: list=[]):
     ''' Recursion is used.
     Changes the global variable ALL_ROUTES, where it writes the created list of
     all possible sequences (routes) of destination points by their numbers (id).
@@ -99,9 +99,21 @@ def find_routes(set_: set, list_: list=[]) -> list:
         find_routes(set_, result_list_)
 
 
-def calc_distance(route_list_, distance_array_):
-    ''' Для данного маршрутного листа суммирует расстояния из матрицы расстояний,
-        добавляя расстояния от почты до первой и последней точки маршрута.
+def calc_distance(route_list_: list, distance_array_: list) -> float:
+    ''' Called in get_shorty().
+    For the given route sheet,
+    Sums distances from the distance array for the given route list. Firstly,
+    adding distances from post office to the first waypoint and the last one.
+
+    Испольщуется в get_shorty().
+    Для данного маршрутного листа суммирует расстояния из матрицы расстояний,
+    добавляя расстояния от почты до первой и последней точки маршрута.
+    Arguments:
+        route_list_ [list] -- Последовательность id точек назначения
+        distance_array_ [list] -- Массив (список списков) расстояний между
+            точками назначения
+    Returns:
+        distance_ [float] -- Итоговая длина маршрута
     '''
     distance_ = (distance_array_[0][route_list_[0]] + distance_array_[0][route_list_[-1]])
     for d_ in range(len(route_list_) - 1):
