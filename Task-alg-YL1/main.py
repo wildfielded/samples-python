@@ -159,11 +159,26 @@ def get_shorty(point_list_: list, distance_array_: list) -> list:
     return min_route_
 
 
-def write_string(list_, point_list_, distance_array_):
-    ''' Из маршрутного листа формирует строку в требуемом формате.
-        Если для почтальона надо представлять маршрут в более читабельном виде
-        (по адресам) то можно в коде заменить ключ словаря 'coords' на 'descr'.
-        Или расширить формат выдачи до любой красоты.
+def write_string(list_: list, point_list_: list, distance_array_:list) -> str:
+    ''' Called in output_result().
+    Forms a string in the required format from the route list. If the postman
+    needs to present the route in a more readable form (by addresses), then one
+    can replace the 'coords' dictionary key with 'descr' key in the code, or
+    paint the output to any beauty format.
+
+    Используется в output_result().
+    Из маршрутного листа формирует строку в требуемом формате. Если для
+    почтальона надо представлять маршрут в более читабельном виде (по адресам),
+    то можно в коде заменить ключ словаря 'coords' на 'descr', или расширить
+    формат выдачи до любой красоты.
+    Arguments:
+        list_ [list] -- Список с последовательностями id точек назначения из
+            списка списков, полученного в get_shorty()
+        point_list_ [list] -- Список словарей с атрибутами точек назначения
+        distance_array_ [list] -- Массив (список списков) расстояний между
+            точками назначения
+    Returns:
+        output_str_ [str] -- Маршрутная строка в требуемом формате
     '''
     dist_sum_ = 0.0
     list_ = [0] + list_ + [0]
