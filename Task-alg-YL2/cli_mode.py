@@ -19,7 +19,7 @@ class GameCell():
     def __init__(self):
         ''' The object is one cell on the playing field with the attributes of
         coordinates (pos), content empty/cross/zero (xo), and weight for the
-        algorithm for choosing the next move (weight).
+        next step selection algorithm (weight).
 
         Объект одной клетки игрового поля с атрибутами координаты (pos),
         контента пусто/крестик/нолик (xo), весом для алгоритма выбора следующего

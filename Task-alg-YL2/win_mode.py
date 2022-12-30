@@ -21,9 +21,13 @@ COMP_WEIGHTS = (5, 4, 3, 2, 1)
 ''' =====----- Classes -----===== '''
 
 class GameCell():
-    ''' Объект одной клетки игрового поля в виде кнопки (butt) и с атрибутами
-        координаты (pos), контента пусто/крестик/нолик (xo), весом для
-        алгоритма выбора следующего хода (weight).
+    ''' The object is one cell on the playing field as the button (butt) and
+    with the attributes of coordinates (pos), content empty/cross/zero (xo), and
+    weight for the next step selection algorithm (weight).
+
+    Объект одной клетки игрового поля в виде кнопки (butt) и с атрибутами
+    координаты (pos), контента пусто/крестик/нолик (xo), весом для алгоритма
+    выбора следующего хода (weight).
     '''
     def __init__(self):
         b_ = QPushButton('')
