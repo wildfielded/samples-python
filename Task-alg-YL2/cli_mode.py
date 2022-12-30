@@ -17,9 +17,13 @@ COMP_WEIGHTS = (5, 4, 3, 2, 1)
 
 class GameCell():
     def __init__(self):
-        ''' Объект одной клетки игрового поля с атрибутами координаты (pos),
-            контента пусто/крестик/нолик (xo), весом для алгоритма выбора
-            следующего хода (weight).
+        ''' The object is one cell on the playing field with the attributes of
+        coordinates (pos), content empty/cross/zero (xo), and weight for the
+        algorithm for choosing the next move (weight).
+
+        Объект одной клетки игрового поля с атрибутами координаты (pos),
+        контента пусто/крестик/нолик (xo), весом для алгоритма выбора следующего
+        хода (weight).
         '''
         self.cell_dict = {
             'pos': (0, 0),
