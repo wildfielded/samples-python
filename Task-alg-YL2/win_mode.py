@@ -9,7 +9,7 @@ from PyQt5.QtWidgets import (QApplication,
                              QGridLayout, QHBoxLayout, QVBoxLayout)
 
 
-#####=====----- Variables -----=====#####
+''' =====----- Global variables -----===== '''
 
 FIELD_ROWS = 10
 FIELD_COLS = 10
@@ -18,7 +18,7 @@ DUDE_WEIGHTS = (10, 8, 6, 4, 2)
 COMP_WEIGHTS = (5, 4, 3, 2, 1)
 
 
-#####=====----- Classes -----=====#####
+''' =====----- Classes -----===== '''
 
 class GameCell():
     ''' Объект одной клетки игрового поля в виде кнопки (butt) и с атрибутами
@@ -224,7 +224,7 @@ class MainWindow(QWidget):
         self.setLayout(main_layout_)
 
 
-#####=====----- MAIN -----=====#####
+''' =====----- MAIN -----===== '''
 
 if __name__ == '__main__':
     app_ = QApplication([])
@@ -232,4 +232,4 @@ if __name__ == '__main__':
     prog_window_.show()
     sys.exit(app_.exec_())
 
-#####=====----- THE END -----=====########################################
+#####=====----- THE END -----=====#########################################

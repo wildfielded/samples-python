@@ -4,7 +4,7 @@ from random import choice
 from sys import exit
 
 
-#####=====----- Variables -----=====#####
+''' =====----- Variables -----===== '''
 
 FIELD_ROWS = 10
 FIELD_COLS = 10
@@ -13,7 +13,7 @@ DUDE_WEIGHTS = (10, 8, 6, 4, 2)
 COMP_WEIGHTS = (5, 4, 3, 2, 1)
 
 
-#####=====----- Classes -----=====#####
+''' =====----- Classes -----===== '''
 
 class GameCell():
     def __init__(self):
@@ -28,7 +28,7 @@ class GameCell():
         }
 
 
-#####=====----- Functions -----=====#####
+''' =====----- Functions -----===== '''
 
 def print_field(array_):
     ''' Печать на консоль текущего состояния игрового поля
@@ -182,7 +182,7 @@ def game_cycle(array_, who_first_):
         put_signs(array_, coords)
 
 
-#####=====----- MAIN -----=====#####
+''' =====----- MAIN -----===== '''
 
 if __name__ == '__main__':
     cell_obj = GameCell()
@@ -194,4 +194,4 @@ if __name__ == '__main__':
                       u'Кто делает первый ход? 1 - игрок, 2 - компьютер: ')
     game_cycle(cell_array, who_first)
 
-#####=====----- THE END -----=====########################################
+#####=====----- THE END -----=====#########################################

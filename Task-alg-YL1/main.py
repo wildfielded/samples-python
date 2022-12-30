@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 ''' =====----- Global variables -----===== '''
+
 post = {'id': 0, 'coords': (0, 2), 'descr': 'Почтовое отделение'}
 point1 = {'id': 1, 'coords': (2, 5), 'descr': 'Ул. Грибоедова, 104/25'}
 point2 = {'id': 2, 'coords': (5, 2), 'descr': 'Ул. Бейкер стрит, 221б'}
@@ -14,6 +15,7 @@ ALLOWED_DELTA = 0.01
 
 
 ''' =====----- Functions -----===== '''
+
 def create_distance_array(point_list_: list) -> list:
     ''' Creates a diagonally symmetrical array (matrix) of all distances between
     all points. The distance from A to B and the distance from B to A are
@@ -221,6 +223,7 @@ def output_result(short_list_: list, point_list_: list,
 
 
 ''' =====----- MAIN -----===== '''
+
 if __name__ == '__main__':
     distance_array = create_distance_array(point_list)
     find_routes(point_set)
