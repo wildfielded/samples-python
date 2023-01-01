@@ -101,14 +101,50 @@ assert zeros(30) == 7
 
 #### Задача 1.4 ####
 
+Написать метод `bananas`, который принимает на вход строку и возвращает
+количество слов &laquo;banana&raquo; в строке.
+
+(Использовать **`-`** для обозначения зачеркнутой буквы)
+
+**Input:** `bbananana`
+
+**Output:**
+
+```text
+b-anana--
+b-anan--a
+b-ana--na
+b-an--ana
+b-a--nana
+b---anana
+-banana--
+-banan--a
+-bana--na
+-ban--ana
+-ba--nana
+-b--anana
+```
+
 Основа:
 
 ```text
+def bananas(s) -> set:
+    result = set()
+    # Your code here!
+    return result
 ```
 
 Для проверки:
 
 ```text
+assert bananas("banann") == set()
+assert bananas("banana") == {"banana"}
+assert bananas("bbananana") == {"b-an--ana", "-banana--", "-b--anana",
+                                "b-a--nana", "-banan--a", "b-ana--na",
+                                "b---anana", "-bana--na", "-ba--nana",
+                                "b-anan--a", "-ban--ana", "b-anana--"}
+assert bananas("bananaaa") == {"banan-a-", "banana--", "banan--a"}
+assert bananas("bananana") == {"ban--ana", "ba--nana", "bana--na", "b--anana", "banana--", "banan--a"}
 ```
 
 ----
