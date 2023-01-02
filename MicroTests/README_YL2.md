@@ -1,44 +1,56 @@
 ## &laquo;Задачки для раскачки&raquo; перед стажировкой YL ##
 
-### Домашка №1 ###
+### Домашка №2 ###
 
 **Требования к задачам:**
 
-- Должны проходить все тесты;
+- Соответствует ожидаемому результату;
 - Написаны без использования сторонних библиотек (можно внутренние, к примеру
 `itertools`);
 - Код соответствует **PEP8**.
 
 
-#### Задача 1.1 ####
+#### Задача 2.1 на циклический итератор ####
 
-Написать метод `domain_name`, который вернет домен из url адреса:
+Надо написать класс `CyclicIterator`. Итератор должен итерироваться по
+итерируемому объекту (`list`, `tuple`, `set`, `range`, `Range2`, и т. д.), и
+когда достигнет последнего элемента, начинать сначала.
 
 ```text
-url = "http://github.com/carbonfive/raygun" -> domain name = "github"
-url = "http://www.zombie-bites.com"         -> domain name = "zombie-bites"
-url = "https://www.cnet.com"                -> domain name = "cnet"
+cyclic_iterator = CyclicIterator(range(3))
+for i in cyclic_iterator:
+    print(i)
 ```
 
 Основа:
 
 ```text
-def domain_name(url):
-    return
+class CyclicIterator:
+    def __iter__(self):
+        pass
+
+    def __next__(self):
+        pass
 ```
 
-Для проверки:
+Для проверки. Ожидаемый вывод программы:
 
 ```text
-assert domain_name("http://google.com") == "google"
-assert domain_name("http://google.co.jp") == "google"
-assert domain_name("www.xakep.ru") == "xakep"
-assert domain_name("https://youtube.com") == "youtube"
+0
+1
+2
+0
+1
+2
+0
+1
+2
+....
 ```
 
 ----
 
-#### Задача 1.2 ####
+#### Задача 2.2 ####
 
 Написать метод `int32_to_ip`, который принимает на вход 32-битное целое число
 (integer) и возвращает строковое представление его в виде IPv4-адреса:
