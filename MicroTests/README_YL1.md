@@ -97,6 +97,18 @@ assert zeros(6) == 1
 assert zeros(30) == 7
 ```
 
+Результат&nbsp;&mdash; [**`test13.py`**](test13.py)
+
+```python
+def zeros(n):
+    zeros_num = 0
+    pow_5 = 5
+    while pow_5 < n:
+        zeros_num += n // pow_5
+        pow_5 *= 5
+    return zeros_num
+```
+
 ----
 
 #### Задача 1.4 ####
