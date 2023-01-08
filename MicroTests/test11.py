@@ -1,7 +1,5 @@
 #!/usr/bin/python3
 
-import re
-
 def domain_name(url_str: str) -> str:
     ''' Returns the "effective" domain name from URL string
     Arguments:

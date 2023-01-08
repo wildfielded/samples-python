@@ -36,6 +36,18 @@ assert domain_name("www.xakep.ru") == "xakep"
 assert domain_name("https://youtube.com") == "youtube"
 ```
 
+Результат&nbsp;&mdash; [**`test11.py`**](test11.py)
+
+```python
+def domain_name(url_str):
+    subdom_list = ['co', 'com', 'org', 'edu', 'gov']
+    doms_list = url_str.replace('http://', '')\
+                       .replace('https://', '')\
+                       .split('/', maxsplit=1)[0]\
+                       .split('.')
+    return doms_list[-2] if doms_list[-2] not in subdom_list else doms_list[-3]
+```
+
 ----
 
 #### Задача 1.2 ####
@@ -70,7 +82,7 @@ assert int32_to_ip(2149583361) == "128.32.10.1"
 def int32_to_ip(int32_):
     ip_str = ''
     for pow_ in range(3, 0, -1):
-        ip_str += str(int32_ // (256**pow_)) + '.'
+        ip_str += str(int32_ // (256 ** pow_)) + '.'
         int32_ %= 256 ** pow_
     return ip_str + str(int32_)
 ```
