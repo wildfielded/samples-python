@@ -2,7 +2,7 @@
 
 def bananas(in_str: str) -> set:
     ''' Returns all letters combinations that make up the word "banana" word
-        from the letters in the initial string
+    from the letters in the initial string
     Arguments:
         in_str [int] -- Initial string
     Returns:
