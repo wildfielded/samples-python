@@ -1,0 +1,3890 @@
+{
+	"info": {
+		"_postman_id": "a3191130-ff05-45b0-81c9-574532f3996f",
+		"name": "menu app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24396936"
+	},
+	"item": [
+		{
+			"name": "Тестовый сценарий",
+			"item": [
+				{
+					"name": "CRUD для Меню",
+					"item": [
+						{
+							"name": "Просматривает список меню",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 200 OK\r",
+											"pm.test(\"Success answer\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"// check that response is empty list\r",
+											"pm.test(\"Response is empty list\", function() {\r",
+											"    pm.expect(responseJSON).to.eql([]);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Создает меню",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 201 CREATED\r",
+											"pm.test(\"Status code is 201\", () => {\r",
+											"  pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"// Save env vars\r",
+											"postman.setEnvironmentVariable('target_menu_id', responseJSON.id);\r",
+											"postman.setEnvironmentVariable('target_menu_title', responseJSON.title);\r",
+											"postman.setEnvironmentVariable('target_menu_description', responseJSON.description);\r",
+											"\r",
+											"// check that 'target_menu_id' from environment & response are equal\r",
+											"pm.test(\"Response contains 'id' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_menu_id')).to.eql(responseJSON.id);\r",
+											"});\r",
+											"\r",
+											"// check that 'target_menu_title' from environment & response are equal\r",
+											"pm.test(\"Response contains 'title' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_menu_title')).to.eql(responseJSON.title);\r",
+											"});\r",
+											"\r",
+											"// check that 'target_menu_description' from environment & response are equal\r",
+											"pm.test(\"Response contains 'description' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_menu_description')).to.eql(responseJSON.description);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"My menu 1\",\r\n    \"description\": \"My menu description 1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Просматривает список меню",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 200 OK\r",
+											"pm.test(\"Success answer\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"// check that response is not empty list\r",
+											"pm.test(\"Response is not empty list\", function() {\r",
+											"    pm.expect(responseJSON).not.eql([]);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Просматривает определенное меню",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 200 OK\r",
+											"pm.test(\"Success answer\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"// check that 'target_menu_id' from environment & response are equal\r",
+											"pm.test(\"Response contains 'id' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_menu_id')).to.eql(responseJSON.id);\r",
+											"});\r",
+											"\r",
+											"// check that 'target_menu_title' from environment & response are equal\r",
+											"pm.test(\"Response contains 'title' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_menu_title')).to.eql(responseJSON.title);\r",
+											"});\r",
+											"\r",
+											"// check that 'target_menu_description' from environment & response are equal\r",
+											"pm.test(\"Response contains 'description' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_menu_description')).to.eql(responseJSON.description);\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{target_menu_id}}",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{target_menu_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Обновляет меню",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 200 OK\r",
+											"pm.test(\"Status code is 200\", () => {\r",
+											"  pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"// check that 'target_menu_title' from environment & response are not equal\r",
+											"pm.test(\"Response contains 'title' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_menu_title')).not.eql(responseJSON.title);\r",
+											"});\r",
+											"\r",
+											"// check that 'target_menu_description' from environment & response are not equal\r",
+											"pm.test(\"Response contains 'description' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_menu_description')).not.eql(responseJSON.description);\r",
+											"});\r",
+											"\r",
+											"// Save env vars\r",
+											"postman.setEnvironmentVariable('target_menu_title', responseJSON.title);\r",
+											"postman.setEnvironmentVariable('target_menu_description', responseJSON.description);\r",
+											"\r",
+											"// check that 'target_menu_title' from environment & response are equal\r",
+											"pm.test(\"Response contains 'title' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_menu_title')).to.eql(responseJSON.title);\r",
+											"});\r",
+											"\r",
+											"// check that 'target_menu_description' from environment & response are equal\r",
+											"pm.test(\"Response contains 'description' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_menu_description')).to.eql(responseJSON.description);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"My updated menu 1\",\r\n    \"description\": \"My updated menu description 1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{target_menu_id}}",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{target_menu_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Просматривает определенное меню",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 200 OK\r",
+											"pm.test(\"Success answer\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"// check that 'target_menu_id' from environment & response are equal\r",
+											"pm.test(\"Response contains 'id' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_menu_id')).to.eql(responseJSON.id);\r",
+											"});\r",
+											"\r",
+											"// check that 'target_menu_title' from environment & response are equal\r",
+											"pm.test(\"Response contains 'title' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_menu_title')).to.eql(responseJSON.title);\r",
+											"});\r",
+											"\r",
+											"// check that 'target_menu_description' from environment & response are equal\r",
+											"pm.test(\"Response contains 'description' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_menu_description')).to.eql(responseJSON.description);\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{target_menu_id}}",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{target_menu_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Удаляет меню",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 200 OK\r",
+											"pm.test(\"Success answer\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{target_menu_id}}",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{target_menu_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Просматривает список меню",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 200 OK\r",
+											"pm.test(\"Success answer\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"// check that response is empty list\r",
+											"pm.test(\"Response is empty list\", function() {\r",
+											"    pm.expect(responseJSON).to.eql([]);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Просматривает определенное меню",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 404 NOT FOUND\r",
+											"pm.test(\"Success answer\", function() {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});\r",
+											"\r",
+											"// check that default message & response are equal\r",
+											"pm.test(\"Response detail message is correct\", () => {\r",
+											"  pm.expect(\"menu not found\").to.eql(responseJSON.detail);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{target_menu_id}}",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{target_menu_id}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"// check that response headers 'content-type' is 'application/json'",
+									"pm.test(\"Content-Type header is application/json\", () => {",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');",
+									"});"
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "CRUD для Подменю",
+					"item": [
+						{
+							"name": "Создает меню",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 201 CREATED\r",
+											"pm.test(\"Status code is 201\", () => {\r",
+											"  pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"// Save env vars\r",
+											"postman.setEnvironmentVariable('target_menu_id', responseJSON.id);\r",
+											"\r",
+											"// check that 'target_menu_id' from environment & response are equal\r",
+											"pm.test(\"Response contains 'id' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_menu_id')).to.eql(responseJSON.id);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"My submenu 1\",\r\n    \"description\": \"My submenu description 1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Просматривает список подменю",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 200 OK\r",
+											"pm.test(\"Success answer\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"// check that response is empty list\r",
+											"pm.test(\"Response is empty list\", function() {\r",
+											"    pm.expect(responseJSON).to.eql([]);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{target_menu_id}}/submenus",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{target_menu_id}}",
+										"submenus"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Создает подменю",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 201 CREATED\r",
+											"pm.test(\"Status code is 201\", () => {\r",
+											"  pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"// Save env vars\r",
+											"postman.setEnvironmentVariable('target_submenu_id', responseJSON.id);\r",
+											"postman.setEnvironmentVariable('target_submenu_title', responseJSON.title);\r",
+											"postman.setEnvironmentVariable('target_submenu_description', responseJSON.description);\r",
+											"\r",
+											"// check that 'target_submenu_id' from environment & response are equal\r",
+											"pm.test(\"Response contains 'id' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_submenu_id')).to.eql(responseJSON.id);\r",
+											"});\r",
+											"\r",
+											"// check that 'target_submenu_title' from environment & response are equal\r",
+											"pm.test(\"Response contains 'title' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_submenu_title')).to.eql(responseJSON.title);\r",
+											"});\r",
+											"\r",
+											"// check that 'target_submenu_description' from environment & response are equal\r",
+											"pm.test(\"Response contains 'description' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_submenu_description')).to.eql(responseJSON.description);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"My submenu 1\",\r\n    \"description\": \"My submenu description 1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{target_menu_id}}/submenus",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{target_menu_id}}",
+										"submenus"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Просматривает список подменю",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 200 OK\r",
+											"pm.test(\"Success answer\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"// check that response is not empty list\r",
+											"pm.test(\"Response is not empty list\", function() {\r",
+											"    pm.expect(responseJSON).not.eql([]);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{target_menu_id}}/submenus",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{target_menu_id}}",
+										"submenus"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Просматривает определенное подменю",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 200 OK\r",
+											"pm.test(\"Success answer\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"// check that 'target_submenu_id' from environment & response are equal\r",
+											"pm.test(\"Response contains 'id' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_submenu_id')).to.eql(responseJSON.id);\r",
+											"});\r",
+											"\r",
+											"// check that 'target_submenu_title' from environment & response are equal\r",
+											"pm.test(\"Response contains 'title' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_submenu_title')).to.eql(responseJSON.title);\r",
+											"});\r",
+											"\r",
+											"// check that 'target_submenu_description' from environment & response are equal\r",
+											"pm.test(\"Response contains 'description' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_submenu_description')).to.eql(responseJSON.description);\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{target_menu_id}}/submenus/{{target_submenu_id}}",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{target_menu_id}}",
+										"submenus",
+										"{{target_submenu_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Обновляет подменю",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 200 OK\r",
+											"pm.test(\"Status code is 200\", () => {\r",
+											"  pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"// check that 'target_submenu_title' from environment & response are not equal\r",
+											"pm.test(\"Response contains 'title' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_submenu_title')).not.eql(responseJSON.title);\r",
+											"});\r",
+											"\r",
+											"// check that 'target_submenu_description' from environment & response are not equal\r",
+											"pm.test(\"Response contains 'description' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_submenu_description')).not.eql(responseJSON.description);\r",
+											"});\r",
+											"\r",
+											"// Save env vars\r",
+											"postman.setEnvironmentVariable('target_submenu_title', responseJSON.title);\r",
+											"postman.setEnvironmentVariable('target_submenu_description', responseJSON.description);\r",
+											"\r",
+											"// check that 'target_submenu_title' from environment & response are equal\r",
+											"pm.test(\"Response contains 'title' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_submenu_title')).to.eql(responseJSON.title);\r",
+											"});\r",
+											"\r",
+											"// check that 'target_submenu_description' from environment & response are equal\r",
+											"pm.test(\"Response contains 'description' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_submenu_description')).to.eql(responseJSON.description);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"My updated submenu 1\",\r\n    \"description\": \"My updated submenu description 1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{target_menu_id}}/submenus/{{target_submenu_id}}",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{target_menu_id}}",
+										"submenus",
+										"{{target_submenu_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Просматривает определенное подменю",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 200 OK\r",
+											"pm.test(\"Success answer\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"// check that 'target_submenu_id' from environment & response are equal\r",
+											"pm.test(\"Response contains 'id' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_submenu_id')).to.eql(responseJSON.id);\r",
+											"});\r",
+											"\r",
+											"// check that 'target_submenu_title' from environment & response are equal\r",
+											"pm.test(\"Response contains 'title' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_submenu_title')).to.eql(responseJSON.title);\r",
+											"});\r",
+											"\r",
+											"// check that 'target_submenu_description' from environment & response are equal\r",
+											"pm.test(\"Response contains 'description' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_submenu_description')).to.eql(responseJSON.description);\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{target_menu_id}}/submenus/{{target_submenu_id}}",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{target_menu_id}}",
+										"submenus",
+										"{{target_submenu_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Удаляет подменю",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 200 OK\r",
+											"pm.test(\"Success answer\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{target_menu_id}}/submenus/{{target_submenu_id}}",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{target_menu_id}}",
+										"submenus",
+										"{{target_submenu_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Просматривает список подменю",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 200 OK\r",
+											"pm.test(\"Success answer\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"// check that response is empty list\r",
+											"pm.test(\"Response is empty list\", function() {\r",
+											"    pm.expect(responseJSON).to.eql([]);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{target_menu_id}}/submenus",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{target_menu_id}}",
+										"submenus"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Просматривает определенное подменю",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 404 NOT FOUND\r",
+											"pm.test(\"Success answer\", function() {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});\r",
+											"\r",
+											"// check that default message & response are equal\r",
+											"pm.test(\"Response detail message is correct\", () => {\r",
+											"  pm.expect(\"submenu not found\").to.eql(responseJSON.detail);\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{target_menu_id}}/submenus/{{target_submenu_id}}",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{target_menu_id}}",
+										"submenus",
+										"{{target_submenu_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Удаляет меню",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 200 OK\r",
+											"pm.test(\"Success answer\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{target_menu_id}}",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{target_menu_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Просматривает список меню",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 200 OK\r",
+											"pm.test(\"Success answer\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"// check that response is empty list\r",
+											"pm.test(\"Response is empty list\", function() {\r",
+											"    pm.expect(responseJSON).to.eql([]);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"// check that response headers 'content-type' is 'application/json'",
+									"pm.test(\"Content-Type header is application/json\", () => {",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');",
+									"});"
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "CRUD для Блюда",
+					"item": [
+						{
+							"name": "Создает меню",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 201 CREATED\r",
+											"pm.test(\"Status code is 201\", () => {\r",
+											"  pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"// Save env vars\r",
+											"postman.setEnvironmentVariable('target_menu_id', responseJSON.id);\r",
+											"\r",
+											"// check that 'target_menu_id' from environment & response are equal\r",
+											"pm.test(\"Response contains 'id' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_menu_id')).to.eql(responseJSON.id);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"My menu 1\",\r\n    \"description\": \"My menu description 1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Создает подменю",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 201 CREATED\r",
+											"pm.test(\"Status code is 201\", () => {\r",
+											"  pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"// Save env vars\r",
+											"postman.setEnvironmentVariable('target_submenu_id', responseJSON.id);\r",
+											"\r",
+											"// check that 'target_submenu_id' from environment & response are equal\r",
+											"pm.test(\"Response contains 'id' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_submenu_id')).to.eql(responseJSON.id);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"My submenu 1\",\r\n    \"description\": \"My submenu description 1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{target_menu_id}}/submenus",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{target_menu_id}}",
+										"submenus"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Просматривает список блюд",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 200 OK\r",
+											"pm.test(\"Success answer\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"// check that response is empty list\r",
+											"pm.test(\"Response is empty list\", function() {\r",
+											"    pm.expect(responseJSON).to.eql([]);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{target_menu_id}}/submenus/{{target_submenu_id}}/dishes",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{target_menu_id}}",
+										"submenus",
+										"{{target_submenu_id}}",
+										"dishes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Создает блюдо",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 201 CREATED\r",
+											"pm.test(\"Status code is 201\", () => {\r",
+											"  pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"// Save env vars\r",
+											"postman.setEnvironmentVariable('target_dish_id', responseJSON.id);\r",
+											"postman.setEnvironmentVariable('target_dish_title', responseJSON.title);\r",
+											"postman.setEnvironmentVariable('target_dish_description', responseJSON.description);\r",
+											"postman.setEnvironmentVariable('target_dish_price', responseJSON.price);\r",
+											"\r",
+											"// check that 'target_submenu_id' from environment & response are equal\r",
+											"pm.test(\"Response contains 'id' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_dish_id')).to.eql(responseJSON.id);\r",
+											"});\r",
+											"\r",
+											"// check that 'target_submenu_title' from environment & response are equal\r",
+											"pm.test(\"Response contains 'title' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_dish_title')).to.eql(responseJSON.title);\r",
+											"});\r",
+											"\r",
+											"// check that 'target_submenu_description' from environment & response are equal\r",
+											"pm.test(\"Response contains 'description' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_dish_description')).to.eql(responseJSON.description);\r",
+											"});\r",
+											"\r",
+											"// check that 'target_dish_price' from environment & response are equal\r",
+											"pm.test(\"Response contains 'description' price\", () => {\r",
+											"  pm.expect(pm.environment.get('target_dish_price')).to.eql(responseJSON.price);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"My dish 1\",\r\n    \"description\": \"My dish description 1\",\r\n    \"price\": \"12.50\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{target_menu_id}}/submenus/{{target_submenu_id}}/dishes",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{target_menu_id}}",
+										"submenus",
+										"{{target_submenu_id}}",
+										"dishes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Просматривает список блюд",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 200 OK\r",
+											"pm.test(\"Success answer\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"// check that response is not empty list\r",
+											"pm.test(\"Response is not empty list\", function() {\r",
+											"    pm.expect(responseJSON).not.eql([]);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{target_menu_id}}/submenus/{{target_submenu_id}}/dishes",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{target_menu_id}}",
+										"submenus",
+										"{{target_submenu_id}}",
+										"dishes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Просматривает определенное блюдо",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 200 OK\r",
+											"pm.test(\"Success answer\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"// check that 'target_dish_id' from environment & response are equal\r",
+											"pm.test(\"Response contains 'id' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_dish_id')).to.eql(responseJSON.id);\r",
+											"});\r",
+											"\r",
+											"// check that 'target_dish_title' from environment & response are equal\r",
+											"pm.test(\"Response contains 'title' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_dish_title')).to.eql(responseJSON.title);\r",
+											"});\r",
+											"\r",
+											"// check that 'target_dish_description' from environment & response are equal\r",
+											"pm.test(\"Response contains 'description' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_dish_description')).to.eql(responseJSON.description);\r",
+											"});\r",
+											"\r",
+											"// check that 'target_dish_price' from environment & response are equal\r",
+											"pm.test(\"Response contains 'price' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_dish_price')).to.eql(responseJSON.price);\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{target_menu_id}}/submenus/{{target_submenu_id}}/dishes/{{target_dish_id}}",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{target_menu_id}}",
+										"submenus",
+										"{{target_submenu_id}}",
+										"dishes",
+										"{{target_dish_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Обновляет блюдо",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 200 OK\r",
+											"pm.test(\"Status code is 200\", () => {\r",
+											"  pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"// check that 'target_dish_title' from environment & response are not equal\r",
+											"pm.test(\"Response contains 'title' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_dish_title')).not.eql(responseJSON.title);\r",
+											"});\r",
+											"\r",
+											"// check that 'target_dish_description' from environment & response are not equal\r",
+											"pm.test(\"Response contains 'description' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_dish_description')).not.eql(responseJSON.description);\r",
+											"});\r",
+											"\r",
+											"// check that 'target_dish_price' from environment & response are not equal\r",
+											"pm.test(\"Response contains 'price' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_dish_price')).not.eql(responseJSON.price);\r",
+											"});\r",
+											"\r",
+											"// Save env vars\r",
+											"postman.setEnvironmentVariable('target_dish_title', responseJSON.title);\r",
+											"postman.setEnvironmentVariable('target_dish_description', responseJSON.description);\r",
+											"postman.setEnvironmentVariable('target_dish_price', responseJSON.price);\r",
+											"\r",
+											"// check that 'target_dish_title' from environment & response are equal\r",
+											"pm.test(\"Response contains 'title' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_dish_title')).to.eql(responseJSON.title);\r",
+											"});\r",
+											"\r",
+											"// check that 'target_dish_description' from environment & response are equal\r",
+											"pm.test(\"Response contains 'description' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_dish_description')).to.eql(responseJSON.description);\r",
+											"});\r",
+											"\r",
+											"// check that 'target_dish_price' from environment & response are equal\r",
+											"pm.test(\"Response contains 'price' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_dish_price')).to.eql(responseJSON.price);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"My updated dish 1\",\r\n    \"description\": \"My updated dish description 1\",\r\n    \"price\": \"14.50\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{target_menu_id}}/submenus/{{target_submenu_id}}/dishes/{{target_dish_id}}",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{target_menu_id}}",
+										"submenus",
+										"{{target_submenu_id}}",
+										"dishes",
+										"{{target_dish_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Просматривает определенное блюдо",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 200 OK\r",
+											"pm.test(\"Success answer\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"// check that 'target_dish_id' from environment & response are equal\r",
+											"pm.test(\"Response contains 'id' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_dish_id')).to.eql(responseJSON.id);\r",
+											"});\r",
+											"\r",
+											"// check that 'target_dish_title' from environment & response are equal\r",
+											"pm.test(\"Response contains 'title' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_dish_title')).to.eql(responseJSON.title);\r",
+											"});\r",
+											"\r",
+											"// check that 'target_dish_description' from environment & response are equal\r",
+											"pm.test(\"Response contains 'description' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_dish_description')).to.eql(responseJSON.description);\r",
+											"});\r",
+											"\r",
+											"// check that 'target_dish_price' from environment & response are equal\r",
+											"pm.test(\"Response contains 'price' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_dish_price')).to.eql(responseJSON.price);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{target_menu_id}}/submenus/{{target_submenu_id}}/dishes/{{target_dish_id}}",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{target_menu_id}}",
+										"submenus",
+										"{{target_submenu_id}}",
+										"dishes",
+										"{{target_dish_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Удаляет блюдо",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 200 OK\r",
+											"pm.test(\"Success answer\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{target_menu_id}}/submenus/{{target_submenu_id}}/dishes/{{target_dish_id}}",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{target_menu_id}}",
+										"submenus",
+										"{{target_submenu_id}}",
+										"dishes",
+										"{{target_dish_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Просматривает список блюд",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 200 OK\r",
+											"pm.test(\"Success answer\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"// check that response is empty list\r",
+											"pm.test(\"Response is empty list\", function() {\r",
+											"    pm.expect(responseJSON).to.eql([]);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{target_menu_id}}/submenus/{{target_submenu_id}}/dishes",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{target_menu_id}}",
+										"submenus",
+										"{{target_submenu_id}}",
+										"dishes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Просматривает определенное блюдо",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 404 NOT FOUND\r",
+											"pm.test(\"Success answer\", function() {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});\r",
+											"\r",
+											"// check that default message & response are equal\r",
+											"pm.test(\"Response detail message is correct\", () => {\r",
+											"  pm.expect(\"dish not found\").to.eql(responseJSON.detail);\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{target_menu_id}}/submenus/{{target_submenu_id}}/dishes/{{target_dish_id}}",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{target_menu_id}}",
+										"submenus",
+										"{{target_submenu_id}}",
+										"dishes",
+										"{{target_dish_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Удаляет подменю",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 200 OK\r",
+											"pm.test(\"Success answer\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{target_menu_id}}/submenus/{{target_submenu_id}}",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{target_menu_id}}",
+										"submenus",
+										"{{target_submenu_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Просматривает список подменю",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 200 OK\r",
+											"pm.test(\"Success answer\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"// check that response is empty list\r",
+											"pm.test(\"Response is empty list\", function() {\r",
+											"    pm.expect(responseJSON).to.eql([]);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{target_menu_id}}/submenus",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{target_menu_id}}",
+										"submenus"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Удаляет меню",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 200 OK\r",
+											"pm.test(\"Success answer\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{target_menu_id}}",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{target_menu_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Просматривает список меню",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 200 OK\r",
+											"pm.test(\"Success answer\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"// check that response is empty list\r",
+											"pm.test(\"Response is empty list\", function() {\r",
+											"    pm.expect(responseJSON).to.eql([]);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"// check that response headers 'content-type' is 'application/json'",
+									"pm.test(\"Content-Type header is application/json\", () => {",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');",
+									"});"
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Проверка кол-ва блюд и подменю в меню",
+					"item": [
+						{
+							"name": "Создает меню",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 201 CREATED\r",
+											"pm.test(\"Status code is 201\", () => {\r",
+											"  pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"// Save env vars\r",
+											"postman.setEnvironmentVariable('target_menu_id', responseJSON.id);\r",
+											"\r",
+											"// check that 'target_menu_id' from environment & response are equal\r",
+											"pm.test(\"Response contains 'id' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_menu_id')).to.eql(responseJSON.id);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"My menu 1\",\r\n    \"description\": \"My menu description 1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Создает подменю",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 201 CREATED\r",
+											"pm.test(\"Status code is 201\", () => {\r",
+											"  pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"// Save env vars\r",
+											"postman.setEnvironmentVariable('target_submenu_id', responseJSON.id);\r",
+											"\r",
+											"// check that 'target_submenu_id' from environment & response are equal\r",
+											"pm.test(\"Response contains 'id' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_submenu_id')).to.eql(responseJSON.id);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"My submenu 1\",\r\n    \"description\": \"My submenu description 1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{target_menu_id}}/submenus",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{target_menu_id}}",
+										"submenus"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Создает блюдо 1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 201 CREATED\r",
+											"pm.test(\"Status code is 201\", () => {\r",
+											"  pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"// Save env vars\r",
+											"postman.setEnvironmentVariable('target_dish_id', responseJSON.id);\r",
+											"\r",
+											"// check that 'target_submenu_id' from environment & response are equal\r",
+											"pm.test(\"Response contains 'id' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_dish_id')).to.eql(responseJSON.id);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"My dish 2\",\r\n    \"description\": \"My dish description 2\",\r\n    \"price\": \"13.50\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{target_menu_id}}/submenus/{{target_submenu_id}}/dishes",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{target_menu_id}}",
+										"submenus",
+										"{{target_submenu_id}}",
+										"dishes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Создает блюдо 2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 201 CREATED\r",
+											"pm.test(\"Status code is 201\", () => {\r",
+											"  pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"// Save env vars\r",
+											"postman.setEnvironmentVariable('target_dish_id', responseJSON.id);\r",
+											"\r",
+											"// check that 'target_submenu_id' from environment & response are equal\r",
+											"pm.test(\"Response contains 'id' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_dish_id')).to.eql(responseJSON.id);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"My dish 1\",\r\n    \"description\": \"My dish description 1\",\r\n    \"price\": \"12.50\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{target_menu_id}}/submenus/{{target_submenu_id}}/dishes",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{target_menu_id}}",
+										"submenus",
+										"{{target_submenu_id}}",
+										"dishes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Просматривает определенное меню",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 200 OK\r",
+											"pm.test(\"Success answer\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"// check that 'target_menu_id' from environment & response are equal\r",
+											"pm.test(\"Response contains 'id' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_menu_id')).to.eql(responseJSON.id);\r",
+											"});\r",
+											"\r",
+											"// check that 'submenus_count' from environment & response are equal\r",
+											"pm.test(\"Response contains 'submenus_count' property\", () => {\r",
+											"  pm.expect(1).to.eql(responseJSON.submenus_count);\r",
+											"});\r",
+											"\r",
+											"// check that 'dishes_count' from environment & response are equal\r",
+											"pm.test(\"Response contains 'dishes_count' property\", () => {\r",
+											"  pm.expect(2).to.eql(responseJSON.dishes_count);\r",
+											"});\r",
+											"\r",
+											"console.log(responseJSON)\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{target_menu_id}}",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{target_menu_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Просматривает определенное подменю",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 200 OK\r",
+											"pm.test(\"Success answer\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"// check that 'target_submenu_id' from environment & response are equal\r",
+											"pm.test(\"Response contains 'id' property\", () => {\r",
+											"    pm.expect(pm.environment.get('target_submenu_id')).to.eql(responseJSON.id);\r",
+											"});\r",
+											"\r",
+											"// check that 'dishes_count' from environment & response are equal\r",
+											"pm.test(\"Response contains 'dishes_count' property\", () => {\r",
+											"  pm.expect(responseJSON.dishes_count).to.eql(2);\r",
+											"});\r",
+											"console.log(responseJSON);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{target_menu_id}}/submenus/{{target_submenu_id}}",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{target_menu_id}}",
+										"submenus",
+										"{{target_submenu_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Удаляет подменю",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 200 OK\r",
+											"pm.test(\"Success answer\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{target_menu_id}}/submenus/{{target_submenu_id}}",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{target_menu_id}}",
+										"submenus",
+										"{{target_submenu_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Просматривает список подменю",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 200 OK\r",
+											"pm.test(\"Success answer\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"// check that response is empty list\r",
+											"pm.test(\"Response is empty list\", function() {\r",
+											"    pm.expect(responseJSON).to.eql([]);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{target_menu_id}}/submenus",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{target_menu_id}}",
+										"submenus"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Просматривает список блюд",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 200 OK\r",
+											"pm.test(\"Success answer\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"// check that response is empty list\r",
+											"pm.test(\"Response is empty list\", function() {\r",
+											"    pm.expect(responseJSON).to.eql([]);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{target_menu_id}}/submenus/{{target_submenu_id}}/dishes",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{target_menu_id}}",
+										"submenus",
+										"{{target_submenu_id}}",
+										"dishes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Просматривает определенное меню",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 200 OK\r",
+											"pm.test(\"Success answer\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"console.log(responseJSON);\r",
+											"\r",
+											"// check that 'target_menu_id' from environment & response are equal\r",
+											"pm.test(\"Response contains 'id' property\", () => {\r",
+											"  pm.expect(pm.environment.get('target_menu_id')).to.eql(responseJSON.id);\r",
+											"});\r",
+											"\r",
+											"// check that 'submenus_count' from environment & response are equal\r",
+											"pm.test(\"Response contains 'submenus_count' property\", () => {\r",
+											"  pm.expect(responseJSON.submenus_count).to.eql(0);\r",
+											"});\r",
+											"\r",
+											"// check that 'dishes_count' from environment & response are equal\r",
+											"pm.test(\"Response contains 'dishes_count' property\", () => {\r",
+											"  pm.expect(responseJSON.dishes_count).to.eql(0);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{target_menu_id}}",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{target_menu_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Удаляет меню",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 200 OK\r",
+											"pm.test(\"Success answer\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{target_menu_id}}",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{target_menu_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Просматривает список меню",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 200 OK\r",
+											"pm.test(\"Success answer\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"// check that response is empty list\r",
+											"pm.test(\"Response is empty list\", function() {\r",
+											"    pm.expect(responseJSON).to.eql([]);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "api",
+			"item": [
+				{
+					"name": "menu",
+					"item": [
+						{
+							"name": "Просмотр списка меню",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 200 OK\r",
+											"pm.test(\"Success answer\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Выдача списка меню",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{LOCAL_URL}}/api/v1/menus",
+											"host": [
+												"{{LOCAL_URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"menus"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": "[\r\n    {\r\n        \"id\": \"a2eb416c-2245-4526-bb4b-6343d5c5016f\",\r\n        \"title\": \"My menu 1\",\r\n        \"description\": \"My menu description 1\",\r\n        \"submenus_count\": 0,\r\n        \"dishes_count\": 0\r\n    }\r\n]"
+								}
+							]
+						},
+						{
+							"name": "Просмотр определенного меню",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 200 OK\r",
+											"pm.test(\"Success answer\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{api_test_menu_id}}",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{api_test_menu_id}}"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Меню найдено",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{LOCAL_URL}}/api/v1/menus/{{api_test_menu_id}}",
+											"host": [
+												"{{LOCAL_URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"menus",
+												"{{api_test_menu_id}}"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": "{\r\n    \"id\": \"a2eb416c-2245-4526-bb4b-6343d5c5016f\",\r\n    \"title\": \"My menu 1\",\r\n    \"description\": \"My menu description 1\",\r\n    \"submenus_count\": 0,\r\n    \"dishes_count\": 0\r\n}"
+								},
+								{
+									"name": "Меню не найдено",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{LOCAL_URL}}/api/v1/menus/{{api_test_menu_id}}",
+											"host": [
+												"{{LOCAL_URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"menus",
+												"{{api_test_menu_id}}"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": "{\r\n    \"detail\": \"menu not found\"\r\n}"
+								}
+							]
+						},
+						{
+							"name": "Создать меню",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 201 CREATED\r",
+											"pm.test(\"Status code is 201\", () => {\r",
+											"  pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"postman.setEnvironmentVariable('api_test_menu_id', responseJSON.id);\r",
+											"\r",
+											"// check that 'api_test_menu_id' from environment & response are equal\r",
+											"pm.test(\"Response contains 'id' property\", () => {\r",
+											"  pm.expect(pm.environment.get('api_test_menu_id')).to.eql(responseJSON.id);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"My menu 1\",\r\n    \"description\": \"My menu description 1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Меню создано",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"title\": \"My menu 1\",\r\n    \"description\": \"My menu description 1\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{LOCAL_URL}}/api/v1/menus",
+											"host": [
+												"{{LOCAL_URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"menus"
+											]
+										}
+									},
+									"code": 201,
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": "{\r\n    \"id\": \"9a5bce5f-4462-4d12-a66c-d59584b19ee8\",\r\n    \"title\": \"My menu 1\",\r\n    \"description\": \"My menu description 1\",\r\n    \"submenus_count\": 0,\r\n    \"dishes_count\": 0\r\n}"
+								}
+							]
+						},
+						{
+							"name": "Обновить меню",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 200 OK\r",
+											"pm.test(\"Success answer\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"My updated menu 1\",\r\n    \"description\": \"My updated menu description 1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{api_test_menu_id}}",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{api_test_menu_id}}"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Меню обновлено",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"title\": \"My updated menu 1\",\r\n    \"description\": \"My updated menu description 1\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{LOCAL_URL}}/api/v1/menus/{{api_test_menu_id}}",
+											"host": [
+												"{{LOCAL_URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"menus",
+												"{{api_test_menu_id}}"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": "{\r\n    \"id\": \"a2eb416c-2245-4526-bb4b-6343d5c5016f\",\r\n    \"title\": \"My updated menu 1\",\r\n    \"description\": \"My updated menu description 1\",\r\n    \"submenus_count\": 0,\r\n    \"dishes_count\": 0\r\n}"
+								},
+								{
+									"name": "Меню не найдено",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{LOCAL_URL}}/api/v1/menus/{{api_test_menu_id}}",
+											"host": [
+												"{{LOCAL_URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"menus",
+												"{{api_test_menu_id}}"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": "{\r\n    \"detail\": \"menu not found\"\r\n}"
+								}
+							]
+						},
+						{
+							"name": "Удалить меню",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 200 OK\r",
+											"pm.test(\"Success answer\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{api_test_menu_id}}",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{api_test_menu_id}}"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Меню удалено",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{LOCAL_URL}}/api/v1/menus/{{api_test_menu_id}}",
+											"host": [
+												"{{LOCAL_URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"menus",
+												"{{api_test_menu_id}}"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": "{\r\n    \"status\": true,\r\n    \"message\": \"The menu has been deleted\"\r\n}"
+								}
+							]
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"// check that response headers 'content-type' is 'application/json'",
+									"pm.test(\"Content-Type header is application/json\", () => {",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');",
+									"});"
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "submenu",
+					"item": [
+						{
+							"name": "Просмотр списка подменю",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 200 OK\r",
+											"pm.test(\"Success answer\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{api_test_menu_id}}/submenus",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{api_test_menu_id}}",
+										"submenus"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Выдача списка подменю",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{LOCAL_URL}}/api/v1/menus/{{api_test_menu_id}}/submenus",
+											"host": [
+												"{{LOCAL_URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"menus",
+												"{{api_test_menu_id}}",
+												"submenus"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": "[\r\n    {\r\n        \"id\": \"bc19488a-cc0e-4eaa-8d21-4d486a45392f\",\r\n        \"title\": \"My submenu 1\",\r\n        \"description\": \"My submenu description 1\",\r\n        \"dishes_count\": 0\r\n    }\r\n]"
+								}
+							]
+						},
+						{
+							"name": "Просмотр определенного подменю",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 200 OK\r",
+											"pm.test(\"Success answer\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{api_test_menu_id}}/submenus/{{api_test_submenu_id}}",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{api_test_menu_id}}",
+										"submenus",
+										"{{api_test_submenu_id}}"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Подменю найдено",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{LOCAL_URL}}/api/v1/menus/{{api_test_menu_id}}/submenus/{{api_test_submenu_id}}",
+											"host": [
+												"{{LOCAL_URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"menus",
+												"{{api_test_menu_id}}",
+												"submenus",
+												"{{api_test_submenu_id}}"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": "{\r\n    \"id\": \"bc19488a-cc0e-4eaa-8d21-4d486a45392f\",\r\n    \"title\": \"My submenu 1\",\r\n    \"description\": \"My submenu description 1\",\r\n    \"dishes_count\": 0\r\n}"
+								},
+								{
+									"name": "Подменю не найдено",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{LOCAL_URL}}/api/v1/menus/{{api_test_menu_id}}/submenus/{{api_test_submenu_id}}",
+											"host": [
+												"{{LOCAL_URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"menus",
+												"{{api_test_menu_id}}",
+												"submenus",
+												"{{api_test_submenu_id}}"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": "{\r\n    \"detail\": \"submenu not found\"\r\n}"
+								}
+							]
+						},
+						{
+							"name": "Создать подменю",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 201 CREATED\r",
+											"pm.test(\"Status code is 201\", () => {\r",
+											"  pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"postman.setEnvironmentVariable('api_test_submenu_id', responseJSON.id);\r",
+											"\r",
+											"// check that 'api_test_submenu_id' from environment & response are equal\r",
+											"pm.test(\"Response contains 'id' property\", () => {\r",
+											"  pm.expect(pm.environment.get('api_test_submenu_id')).to.eql(responseJSON.id);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"My submenu 1\",\r\n    \"description\": \"My submenu description 1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{api_test_menu_id}}/submenus",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{api_test_menu_id}}",
+										"submenus"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Подменю создано",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"title\": \"My submenu 1\",\r\n    \"description\": \"My submenu description 1\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{LOCAL_URL}}/api/v1/menus/{{api_test_menu_id}}/submenus",
+											"host": [
+												"{{LOCAL_URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"menus",
+												"{{api_test_menu_id}}",
+												"submenus"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": "{\r\n    \"id\": \"bc19488a-cc0e-4eaa-8d21-4d486a45392f\",\r\n    \"title\": \"My submenu 1\",\r\n    \"description\": \"My submenu description 1\",\r\n    \"dishes_count\": 0\r\n}"
+								}
+							]
+						},
+						{
+							"name": "Обновить подменю",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 200 OK\r",
+											"pm.test(\"Success answer\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"My updated submenu 1\",\r\n    \"description\": \"My updated submenu description 1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{api_test_menu_id}}/submenus/{{api_test_submenu_id}}",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{api_test_menu_id}}",
+										"submenus",
+										"{{api_test_submenu_id}}"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Подменю обновлено",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"title\": \"My updated submenu 1\",\r\n    \"description\": \"My updated submenu description 1\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{LOCAL_URL}}/api/v1/menus/{{api_test_menu_id}}/submenus/{{api_test_submenu_id}}",
+											"host": [
+												"{{LOCAL_URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"menus",
+												"{{api_test_menu_id}}",
+												"submenus",
+												"{{api_test_submenu_id}}"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": "{\r\n    \"id\": \"bc19488a-cc0e-4eaa-8d21-4d486a45392f\",\r\n    \"title\": \"My updated submenu 1\",\r\n    \"description\": \"My updated submenu description 1\",\r\n    \"dishes_count\": 0\r\n}"
+								},
+								{
+									"name": "Подменю не найдено",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{LOCAL_URL}}/api/v1/menus/{{api_test_menu_id}}/submenus/{{api_test_submenu_id}}",
+											"host": [
+												"{{LOCAL_URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"menus",
+												"{{api_test_menu_id}}",
+												"submenus",
+												"{{api_test_submenu_id}}"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": "{\r\n    \"detail\": \"submenu not found\"\r\n}"
+								}
+							]
+						},
+						{
+							"name": "Удалить подменю",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 200 OK\r",
+											"pm.test(\"Success answer\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{api_test_menu_id}}/submenus/{{api_test_submenu_id}}",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{api_test_menu_id}}",
+										"submenus",
+										"{{api_test_submenu_id}}"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Подменю удалено",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{LOCAL_URL}}/api/v1/menus/{{api_test_menu_id}}/submenus/{{api_test_submenu_id}}",
+											"host": [
+												"{{LOCAL_URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"menus",
+												"{{api_test_menu_id}}",
+												"submenus",
+												"{{api_test_submenu_id}}"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": "{\r\n    \"status\": true,\r\n    \"message\": \"The submenu has been deleted\"\r\n}"
+								}
+							]
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"// check that response headers 'content-type' is 'application/json'",
+									"pm.test(\"Content-Type header is application/json\", () => {",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');",
+									"});"
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "dish",
+					"item": [
+						{
+							"name": "Просмотр списка блюд",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 200 OK\r",
+											"pm.test(\"Success answer\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{api_test_menu_id}}/submenus/{{api_test_submenu_id}}/dishes",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{api_test_menu_id}}",
+										"submenus",
+										"{{api_test_submenu_id}}",
+										"dishes"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Выдача списка блюд",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{LOCAL_URL}}/api/v1/menus/{{api_test_menu_id}}/submenus/{{api_test_submenu_id}}/dishes",
+											"host": [
+												"{{LOCAL_URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"menus",
+												"{{api_test_menu_id}}",
+												"submenus",
+												"{{api_test_submenu_id}}",
+												"dishes"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": "[\r\n    {\r\n        \"id\": \"602033b3-0462-4de1-a2f8-d8494795e0c0\",\r\n        \"title\": \"My dish 1\",\r\n        \"description\": \"My dish description 1\",\r\n        \"price\": \"12.50\"\r\n    }\r\n]"
+								}
+							]
+						},
+						{
+							"name": "Просмотр определенного блюда",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 200 OK\r",
+											"pm.test(\"Success answer\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{api_test_menu_id}}/submenus/{{api_test_submenu_id}}/dishes/{{api_test_dish_id}}",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{api_test_menu_id}}",
+										"submenus",
+										"{{api_test_submenu_id}}",
+										"dishes",
+										"{{api_test_dish_id}}"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Блюдо найдено",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{LOCAL_URL}}/api/v1/menus/{{api_test_menu_id}}/submenus/{{api_test_submenu_id}}/dishes/{{api_test_dish_id}}",
+											"host": [
+												"{{LOCAL_URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"menus",
+												"{{api_test_menu_id}}",
+												"submenus",
+												"{{api_test_submenu_id}}",
+												"dishes",
+												"{{api_test_dish_id}}"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": "{\r\n    \"id\": \"602033b3-0462-4de1-a2f8-d8494795e0c0\",\r\n    \"title\": \"My dish 1\",\r\n    \"description\": \"My dish description 1\",\r\n    \"price\": \"12.50\"\r\n}"
+								},
+								{
+									"name": "Блюдо не найдено",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{LOCAL_URL}}/api/v1/menus/{{api_test_menu_id}}/submenus/{{api_test_submenu_id}}/dishes/{{api_test_dish_id}}",
+											"host": [
+												"{{LOCAL_URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"menus",
+												"{{api_test_menu_id}}",
+												"submenus",
+												"{{api_test_submenu_id}}",
+												"dishes",
+												"{{api_test_dish_id}}"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": "{\r\n    \"detail\": \"dish not found\"\r\n}"
+								}
+							]
+						},
+						{
+							"name": "Создать блюдо",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 201 CREATED\r",
+											"pm.test(\"Status code is 201\", () => {\r",
+											"  pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"postman.setEnvironmentVariable('api_test_dish_id', responseJSON.id);\r",
+											"\r",
+											"// check that 'api_test_dish_id' from environment & response are equal\r",
+											"pm.test(\"Response contains 'id' property\", () => {\r",
+											"  pm.expect(pm.environment.get('api_test_dish_id')).to.eql(responseJSON.id);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"My dish 1\",\r\n    \"description\": \"My dish description 1\",\r\n    \"price\": \"12.50\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{api_test_menu_id}}/submenus/{{api_test_submenu_id}}/dishes",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{api_test_menu_id}}",
+										"submenus",
+										"{{api_test_submenu_id}}",
+										"dishes"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Блюдо создано",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"title\": \"My dish 1\",\r\n    \"description\": \"My dish description 1\",\r\n    \"price\": \"12.50\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{LOCAL_URL}}/api/v1/menus/{{api_test_menu_id}}/submenus/{{api_test_submenu_id}}/dishes",
+											"host": [
+												"{{LOCAL_URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"menus",
+												"{{api_test_menu_id}}",
+												"submenus",
+												"{{api_test_submenu_id}}",
+												"dishes"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": "{\r\n    \"id\": \"602033b3-0462-4de1-a2f8-d8494795e0c0\",\r\n    \"title\": \"My dish 1\",\r\n    \"description\": \"My dish description 1\",\r\n    \"price\": \"12.50\"\r\n}"
+								}
+							]
+						},
+						{
+							"name": "Обновить блюдо",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 200 OK\r",
+											"pm.test(\"Success answer\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"My updated dish 1\",\r\n    \"description\": \"My updated dish description 1\",\r\n    \"price\": \"14.50\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{api_test_menu_id}}/submenus/{{api_test_submenu_id}}/dishes/{{api_test_dish_id}}",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{api_test_menu_id}}",
+										"submenus",
+										"{{api_test_submenu_id}}",
+										"dishes",
+										"{{api_test_dish_id}}"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Блюдо обновлено",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"title\": \"My updated dish 1\",\r\n    \"description\": \"My updated dish description 1\",\r\n    \"price\": \"14.50\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{LOCAL_URL}}/api/v1/menus/{{api_test_menu_id}}/submenus/{{api_test_submenu_id}}/dishes/{{api_test_dish_id}}",
+											"host": [
+												"{{LOCAL_URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"menus",
+												"{{api_test_menu_id}}",
+												"submenus",
+												"{{api_test_submenu_id}}",
+												"dishes",
+												"{{api_test_dish_id}}"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": "{\r\n    \"id\": \"602033b3-0462-4de1-a2f8-d8494795e0c0\",\r\n    \"title\": \"My updated dish 1\",\r\n    \"description\": \"My updated dish description 1\",\r\n    \"price\": \"14.50\"\r\n}"
+								},
+								{
+									"name": "Блюдо не найдено",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{LOCAL_URL}}/api/v1/menus/{{api_test_menu_id}}/submenus/{{api_test_submenu_id}}/dishes/{{api_test_dish_id}}",
+											"host": [
+												"{{LOCAL_URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"menus",
+												"{{api_test_menu_id}}",
+												"submenus",
+												"{{api_test_submenu_id}}",
+												"dishes",
+												"{{api_test_dish_id}}"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": "{\r\n    \"detail\": \"dish not found\"\r\n}"
+								}
+							]
+						},
+						{
+							"name": "Удалить блюдо",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJSON = pm.response.json();\r",
+											"\r",
+											"// check that response status HTTP 200 OK\r",
+											"pm.test(\"Success answer\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL_URL}}/api/v1/menus/{{api_test_menu_id}}/submenus/{{api_test_submenu_id}}/dishes/{{api_test_dish_id}}",
+									"host": [
+										"{{LOCAL_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"menus",
+										"{{api_test_menu_id}}",
+										"submenus",
+										"{{api_test_submenu_id}}",
+										"dishes",
+										"{{api_test_dish_id}}"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Блюдо удалено",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{LOCAL_URL}}/api/v1/menus/{{api_test_menu_id}}/submenus/{{api_test_submenu_id}}/dishes/{{api_test_dish_id}}",
+											"host": [
+												"{{LOCAL_URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"menus",
+												"{{api_test_menu_id}}",
+												"submenus",
+												"{{api_test_submenu_id}}",
+												"dishes",
+												"{{api_test_dish_id}}"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": "{\r\n    \"status\": true,\r\n    \"message\": \"The dish has been deleted\"\r\n}"
+								}
+							]
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"// check that response headers 'content-type' is 'application/json'",
+									"pm.test(\"Content-Type header is application/json\", () => {",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');",
+									"});"
+								]
+							}
+						}
+					]
+				}
+			]
+		}
+	]
+}
