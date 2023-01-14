@@ -31,4 +31,7 @@
 
 ## Мелкие упражнения и задачи с собеседований ##
 
+1. [**`MicroTests-YL`**](https://github.com/wildfielded/samples-python/tree/master/MicroTests-YL)&nbsp;&mdash;
+Мелкие задачки на алгоритмы, генераторы и декораторы.
+
 ----

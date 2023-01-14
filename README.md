@@ -31,4 +31,7 @@ REST API implementation with three HTTP-methods (Backend development).
 
 ## Small exercises and tasks from interviews ##
 
+1. [**`MicroTests-YL`**](https://github.com/wildfielded/samples-python/tree/master/MicroTests-YL)&nbsp;&mdash;
+Minor tasks for algorithms, generators and decorators.
+
 ----
