@@ -20,7 +20,7 @@ def create_distance_array(point_list_: list) -> list:
     ''' Creates a diagonally symmetrical array (matrix) of all distances between
     all points. The distance from A to B and the distance from B to A are
     calculated once. That is, for 5 points 4+3+2+1=10 distances are calculated.
-
+    -----
     Создаёт диагонально-симметричную матрицу всех расстояний между всеми
     точками. Расстояние от A до B и расстояние от B до A вычисляется один раз.
     То есть, как положено, для 5 точек вычисляется 4+3+2+1=10 расстояний.
@@ -44,12 +44,11 @@ def create_distance_array(point_list_: list) -> list:
                 = calc_dist(point_list_[s_], point_list_[f_])
     return distance_array_
 
-
 def multiply_list(set_: set, list_: list=[]) -> list:
     ''' Called in find_routes().
     Multiplies the list into elements in which one member from the set is added
     sequentially to the initial list (using a generator).
-
+    -----
     Используется в find_routes().
     Размножает список на элементы, в которых последовательно (с применением
     генератора) к исходному списку добавляется один член из множества.
@@ -65,14 +64,13 @@ def multiply_list(set_: set, list_: list=[]) -> list:
         output_list_.append(list_ + [item_])
     return output_list_
 
-
 def find_routes(set_: set, list_: list=[]):
     ''' Recursion is used.
     Changes the global variable ALL_ROUTES, where it writes the created list of
     all possible sequences (routes) of destination points by their numbers (id).
     Each route is also a list without the start and end point (post office with
     id=0).
-
+    -----
     Используется рекурсия.
     Изменяет глобальную переменную ALL_ROUTES, в которую заносит созданный
     список всех возможных последовательностей (маршрутов) посещения точек по их
@@ -101,13 +99,12 @@ def find_routes(set_: set, list_: list=[]):
         result_list_ += multiply_list(set_)
         find_routes(set_, result_list_)
 
-
 def calc_distance(route_list_: list, distance_array_: list) -> float:
     ''' Called in get_shorty().
     For the given route sheet,
     Sums distances from the distance array for the given route list. Firstly,
     adding distances from post office to the first waypoint and the last one.
-
+    -----
     Испольщуется в get_shorty().
     Для данного маршрутного листа суммирует расстояния из матрицы расстояний,
     добавляя расстояния от почты до первой и последней точки маршрута.
@@ -125,12 +122,11 @@ def calc_distance(route_list_: list, distance_array_: list) -> float:
         distance_ += distance_array_[route_list_[d_]][route_list_[d_+1]]
     return distance_
 
-
 def get_shorty(point_list_: list, distance_array_: list) -> list:
     ''' Finds the shortest route from global variable ALL_ROUTES. Additionally,
     it finds routes that are close to the shortest one in distance (the square
     of the difference is less than global variable ALLOWED_DELTA).
-
+    -----
     Из всех маршрутов в ALL_ROUTES находит кратчайший маршрут. Дополнительно
     находит маршруты, близкие к нему по расстоянию (квадрат разницы меньше
     ALLOWED_DELTA).
@@ -160,14 +156,13 @@ def get_shorty(point_list_: list, distance_array_: list) -> list:
                 min_route_.append(route_)
     return min_route_
 
-
 def write_string(list_: list, point_list_: list, distance_array_:list) -> str:
     ''' Called in output_result().
     Forms a string in the required format from the route list. If the postman
     needs to present the route in a more readable form (by addresses), then one
     can replace the 'coords' dictionary key with 'descr' key in the code, or
     paint the output to any beauty format.
-
+    -----
     Используется в output_result().
     Из маршрутного листа формирует строку в требуемом формате. Если для
     почтальона надо представлять маршрут в более читабельном виде (по адресам),
@@ -196,10 +191,12 @@ def write_string(list_: list, point_list_: list, distance_array_:list) -> str:
     output_str_ += f' -> {p_}[{d_}] = {d_}'
     return output_str_
 
-
 def output_result(short_list_: list, point_list_: list,
                   distance_array_: list) -> str:
-    '''
+    ''' Prints the result string with some extension to the task.
+    Specifically: it additionally displays alternative routes (if any) that are
+    close to the shortest one in distance.
+    -----
     Выводит результат работы программы с некоторым расширением к заданию.
     А именно: дополнительно выводит альтернативные маршруты (если есть), близкие
     по расстоянию к кратчайшему.
@@ -214,11 +211,15 @@ def output_result(short_list_: list, point_list_: list,
         output_str_ [str] -- Итоговая маршрутная строка в требуемом формате
     '''
     output_str_ = u'\nКратчайший маршрут:\n'
-    output_str_ += write_string(short_list_[0], point_list_, distance_array_)
+    output_str_ += write_string(short_list_[0],
+                                point_list_,
+                                distance_array_)
     if len(short_list_) > 1:
         output_str_ += u'\n\nАльтернативные кратчайшие маршруты:\n'
         for another_list_ in short_list_[1:]:
-            output_str_ += write_string(another_list_, point_list_, distance_array_)
+            output_str_ += write_string(another_list_,
+                                        point_list_,
+                                        distance_array_)
     return output_str_
 
 
