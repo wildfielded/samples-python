@@ -17,13 +17,13 @@ COMP_WEIGHTS = (5, 4, 3, 2, 1)
 
 class GameCell():
     def __init__(self):
-        ''' The object is one cell on the playing field with the attributes of
-        coordinates (pos), content empty/cross/zero (xo), and weight for the
-        next step selection algorithm (weight).
-
+        ''' The object is one cell on the playing field with the
+        attributes of coordinates (pos), content empty/cross/zero (xo),
+        and weight for the next step selection algorithm (weight).
+        -----
         Объект одной клетки игрового поля с атрибутами координаты (pos),
-        контента пусто/крестик/нолик (xo), весом для алгоритма выбора следующего
-        хода (weight).
+        контента пусто/крестик/нолик (xo), весом для алгоритма выбора
+        следующего хода (weight).
         '''
         self.cell_dict = {
             'pos': (0, 0),
@@ -34,8 +34,17 @@ class GameCell():
 
 ''' =====----- Functions -----===== '''
 
-def print_field(array_):
-    ''' Печать на консоль текущего состояния игрового поля
+def print_field(cell_array_):
+    ''' Called in game_cycle().
+    Prints the current state of the game field to the console
+    -----
+    Используется в game_cycle().
+    Печать на консоль текущего состояния игрового поля
+    Arguments:
+        cell_array_ [list] -- Двумерный массив (список списков) объектов
+            клетки игрового поля
+    Returns:
+        [stdout] -- Игровое поле в текстовом виде
     '''
     str_ = '   '
     for col_ in range(FIELD_COLS):
@@ -43,38 +52,49 @@ def print_field(array_):
     print(str_)
     print('   | | | | | | | | | |')
     row_num_ = 0
-    for row_ in array_:
+    for row_ in cell_array_:
         tmp_str_ = str(row_num_) + '--'
         for cell_ in row_:
             tmp_str_ += (cell_['xo'] + ' ')
         row_num_ += 1
         print(tmp_str_)
 
-def write_weights(array_, row_, col_, xo_):
-    ''' Запись весовых коэффициентов в атрибут ['xo'] объектов клеток поля.
+def write_weights(cell_array_, row_, col_, xo_):
+    ''' Called in dude_answer() and comp_answer().
+    Writes weight coefficients to the ['xo'] attribute of cell objects.
+    -----
+    Используется в dude_answer() и comp_answer().
+    Запись весовых коэффициентов в атрибут ['xo'] объектов клеток поля.
+    Arguments:
+        cell_array_ [list] -- Двумерный массив (список списков) объектов
+        row_, col_ [int] -- Номера строки и колонки клетки, в которой
+            сделан ход
+        xo_ [str] -- 'X' или 'O', в зависимости от того, чей был ход
     '''
     if xo_ == 'X':
         weights_tuple_ = DUDE_WEIGHTS
     else:
         weights_tuple_ = COMP_WEIGHTS
-    array_[row_][col_]['weight'] += weights_tuple_[0]
+    cell_array_[row_][col_]['weight'] += weights_tuple_[0]
     for s_ in range(1, 5):
+        # Направления -> right, left, down, up
         if col_ + s_ in range(FIELD_COLS):
-            array_[row_][col_ + s_]['weight'] += weights_tuple_[s_]
+            cell_array_[row_][col_ + s_]['weight'] += weights_tuple_[s_]
         if col_ - s_ in range(FIELD_COLS):
-            array_[row_][col_ - s_]['weight'] += weights_tuple_[s_]
+            cell_array_[row_][col_ - s_]['weight'] += weights_tuple_[s_]
         if row_ + s_ in range(FIELD_ROWS):
-            array_[row_ + s_][col_]['weight'] += weights_tuple_[s_]
+            cell_array_[row_ + s_][col_]['weight'] += weights_tuple_[s_]
         if row_ - s_ in range(FIELD_ROWS):
-            array_[row_ - s_][col_]['weight'] += weights_tuple_[s_]
+            cell_array_[row_ - s_][col_]['weight'] += weights_tuple_[s_]
+        # Направления -> down-right, down-left, up-right, up-left
         if (row_ + s_ in range(FIELD_ROWS)) and (col_ + s_ in range(FIELD_COLS)):
-            array_[row_ + s_][col_ + s_]['weight'] += weights_tuple_[s_]
+            cell_array_[row_ + s_][col_ + s_]['weight'] += weights_tuple_[s_]
         if (row_ + s_ in range(FIELD_ROWS)) and (col_ - s_ in range(FIELD_COLS)):
-            array_[row_ + s_][col_ - s_]['weight'] += weights_tuple_[s_]
+            cell_array_[row_ + s_][col_ - s_]['weight'] += weights_tuple_[s_]
         if (row_ - s_ in range(FIELD_ROWS)) and (col_ + s_ in range(FIELD_COLS)):
-            array_[row_ - s_][col_ + s_]['weight'] += weights_tuple_[s_]
+            cell_array_[row_ - s_][col_ + s_]['weight'] += weights_tuple_[s_]
         if (row_ - s_ in range(FIELD_ROWS)) and (col_ - s_ in range(FIELD_COLS)):
-            array_[row_ - s_][col_ - s_]['weight'] += weights_tuple_[s_]
+            cell_array_[row_ - s_][col_ - s_]['weight'] += weights_tuple_[s_]
 
 def check_line(array_, row_, col_, xo_):
     ''' Проверяет наличие пяти X или O в линию и прекращает игру, если есть.
@@ -170,20 +190,20 @@ def put_signs(array_, str_):
     else:
         m_ = input(u'Ошибка ввода. Нажмите любую клавишу и пробуйте ещё раз:')
 
-def game_cycle(array_, who_first_):
+def game_cycle(cell_array_, who_first_):
     ''' Основной игровой цикл хода игрока и ответа компьютера
     '''
     coords = ''
     if who_first_ == '2':
-        comp_answer(array_)
+        comp_answer(cell_array_)
     while True:
-        print_field(array_)
+        print_field(cell_array_)
         str1_ = u'Введите [Q|q] для выхода из программы, или\n'
         str2_ = u'Координаты крестика числами в формате "номер_строки/номер_столбца": '
         coords = input(str1_ + str2_)
         if coords in ('Q', 'q'):
             break
-        put_signs(array_, coords)
+        put_signs(cell_array_, coords)
 
 
 ''' =====----- MAIN -----===== '''
