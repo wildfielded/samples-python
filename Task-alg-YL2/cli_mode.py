@@ -8,7 +8,8 @@ from sys import exit
 
 FIELD_ROWS = 10
 FIELD_COLS = 10
-POS_LIST = [(row, col) for row in range(FIELD_ROWS) for col in range(FIELD_COLS)]
+POS_LIST = [(row, col) for row in range(FIELD_ROWS)
+                       for col in range(FIELD_COLS)]
 DUDE_WEIGHTS = (10, 8, 6, 4, 2)
 COMP_WEIGHTS = (5, 4, 3, 2, 1)
 
@@ -209,9 +210,11 @@ def game_cycle(cell_array_, who_first_):
 ''' =====----- MAIN -----===== '''
 
 if __name__ == '__main__':
-    cell_obj = GameCell()
-    cell_array = [[cell_obj.cell_dict.copy() for col in range(FIELD_COLS)] \
-                                             for row in range(FIELD_ROWS)]
+    # cell_obj = GameCell()
+    # cell_array = [[cell_obj.cell_dict.copy() for col in range(FIELD_COLS)]
+                                             # for row in range(FIELD_ROWS)]
+    cell_array = [[GameCell().cell_dict.copy() for col in range(FIELD_COLS)]
+                                               for row in range(FIELD_ROWS)]
     for pos_ in POS_LIST:
         cell_array[pos_[0]][pos_[1]]['pos'] = pos_
     who_first = input(u'Вы играете крестиками. Компьютер - ноликами.\n' + \
