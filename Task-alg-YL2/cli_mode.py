@@ -168,28 +168,38 @@ def comp_answer(array_):
     write_weights(array_, r_, c_, 'O')
     check_line(array_, r_, c_, 'O')
 
-def put_signs(array_, str_):
-    ''' Принимает строку выбора игрока и делает ход компьютера
+def put_signs(cell_array_, str_):
+    ''' Called in game_cycle().
+    Accepts the player's choice string and makes the computer's move
+    -----
+    Используется в game_cycle().
+    Принимает строку выбора игрока и делает ход компьютера.
+    Arguments:
+        cell_array_ [list] -- Двумерный массив (список списков) объектов
+        str_ [str] -- Координаты хода игрока в формате
+            row_number/column_number (именно через "/", можно с
+            пробелами в люьом месте, которые устаняются)
     '''
     list_ = str_.split('/')
-    if list_[0].strip().isdigit() and list_[1].strip().isdigit():
+    if len(list_) == 2 and list_[0].strip().isdigit() and \
+                                list_[1].strip().isdigit():
         row_ = int(list_[0])
         col_ = int(list_[1])
         if row_ < FIELD_ROWS and col_ < FIELD_COLS:
-            if array_[row_][col_]['xo'] == '.':
-                dude_answer(array_, row_, col_)
-                check_end(array_)
-                comp_answer(array_)
-                check_end(array_)
+            if cell_array_[row_][col_]['xo'] == '.':
+                dude_answer(cell_array_, row_, col_)
+                check_end(cell_array_)
+                comp_answer(cell_array_)
+                check_end(cell_array_)
             else:
                 print('\n\n\n\n\n\n\n\n\n\n')
                 print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
                 print(u'ОШИБКА!!! Клетка занята. Поробуйте другую.')
                 print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n')
         else:
-            m_ = input(u'Превышен диапазон. Нажмите любую клавишу и пробуйте ещё раз:')
+            m_ = input(u'Превышен диапазон. Нажмите любую клавишу и пробуйте ещё раз: [Enter]')
     else:
-        m_ = input(u'Ошибка ввода. Нажмите любую клавишу и пробуйте ещё раз:')
+        m_ = input(u'Ошибка ввода. Нажмите любую клавишу и пробуйте ещё раз: [Enter]')
 
 def game_cycle(cell_array_, who_first_):
     ''' Основной игровой цикл хода игрока и ответа компьютера
