@@ -35,30 +35,33 @@ class GameCell():
 
 ''' =====----- Functions -----===== '''
 
-def print_field(cell_array_):
-    ''' Called in game_cycle().
-    Prints the current state of the game field to the console
+def draw_field(cell_array_):
+    ''' Called in game_cycle() and check_line().
+    Forms the current multi-line state of the game field fot output
+    to the console.
     -----
-    Используется в game_cycle().
-    Печать на консоль текущего состояния игрового поля
+    Используется в game_cycle() и check_line().
+    Формирует многострочник текущего состояния игрового поля для вывода
+    на консоль.
     Arguments:
         cell_array_ [list] -- Двумерный массив (список списков) объектов
             клетки игрового поля
     Returns:
-        [stdout] -- Игровое поле в текстовом виде
+        output_str_ [str] -- Игровое поле в текстовом виде
     '''
-    str_ = '   '
+    output_str_ = '   '
     for col_ in range(FIELD_COLS):
-        str_ += (str(col_) + ' ')
-    print(str_)
-    print('   | | | | | | | | | |')
+        output_str_ += (str(col_) + ' ')
+    output_str_ += ('\n' + '   | | | | | | | | | |' + '\n')
     row_num_ = 0
     for row_ in cell_array_:
         tmp_str_ = str(row_num_) + '--'
         for cell_ in row_:
             tmp_str_ += (cell_['xo'] + ' ')
+        tmp_str_ += '\n'
+        output_str_ += tmp_str_
         row_num_ += 1
-        print(tmp_str_)
+    return output_str_
 
 def write_weights(cell_array_, row_, col_, xo_):
     ''' Called in dude_answer() and comp_answer().
@@ -119,10 +122,10 @@ def check_line(array_, row_, col_, xo_):
        (risin_line_.find(looser_line_) > -1) or \
        (falln_line_.find(looser_line_) > -1):
         if xo_ == 'X':
-            print_field(array_)
+            print(draw_field(array_))
             print(u'Вы проиграли!')
         if xo_ == 'O':
-            print_field(array_)
+            print(draw_field(array_))
             print(u'Вы победили!')
         exit()
 
@@ -182,7 +185,7 @@ def put_signs(cell_array_, str_):
     '''
     list_ = str_.split('/')
     if len(list_) == 2 and list_[0].strip().isdigit() and \
-                                list_[1].strip().isdigit():
+                           list_[1].strip().isdigit():
         row_ = int(list_[0])
         col_ = int(list_[1])
         if row_ < FIELD_ROWS and col_ < FIELD_COLS:
@@ -208,7 +211,7 @@ def game_cycle(cell_array_, who_first_):
     if who_first_ == '2':
         comp_answer(cell_array_)
     while True:
-        print_field(cell_array_)
+        print(draw_field(cell_array_))
         str1_ = u'Введите [Q|q] для выхода из программы, или\n'
         str2_ = u'Координаты крестика числами в формате "номер_строки/номер_столбца": '
         coords = input(str1_ + str2_)
