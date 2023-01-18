@@ -100,8 +100,15 @@ def write_weights(cell_array_, row_, col_, xo_):
         if (row_ - s_ in range(FIELD_ROWS)) and (col_ - s_ in range(FIELD_COLS)):
             cell_array_[row_ - s_][col_ - s_]['weight'] += weights_tuple_[s_]
 
-def check_line(array_, row_, col_, xo_):
-    ''' Проверяет наличие пяти X или O в линию и прекращает игру, если есть.
+def check_line(cell_array_, row_, col_, xo_):
+    ''' Called in dude_answer() and comp_answer().
+    Checks the existence of five X or O in a line and stops the game
+    if there are.
+    -----
+    Используется в dude_answer() и comp_answer().
+    Проверяет наличие пяти X или O в линию и прекращает игру, если есть.
+    Arguments:
+        cell_array_ [list] -- Двумерный массив (список списков) объектов
     '''
     horiz_line_ = ''
     verti_line_ = ''
@@ -109,23 +116,29 @@ def check_line(array_, row_, col_, xo_):
     falln_line_ = ''
     looser_line_ = xo_ * 5
     for s_ in range(-4, 5):
+        # Check in horisontal line
         if col_ + s_ in range(FIELD_COLS):
-            horiz_line_ += array_[row_][col_ + s_]['xo']
+                horiz_line_ += cell_array_[row_][col_ + s_]['xo']
+        # Check in vertical line
         if row_ + s_ in range(FIELD_ROWS):
-            verti_line_ += array_[row_ + s_][col_]['xo']
-        if (row_ - s_ in range(FIELD_ROWS)) and (col_ + s_ in range(FIELD_COLS)):
-            risin_line_ += array_[row_ - s_][col_ + s_]['xo']
-        if (row_ + s_ in range(FIELD_ROWS)) and (col_ + s_ in range(FIELD_COLS)):
-            falln_line_ += array_[row_ + s_][col_ + s_]['xo']
+                verti_line_ += cell_array_[row_ + s_][col_]['xo']
+        # Check in rising (down-left to up-right) diagonal
+        if (row_ - s_ in range(FIELD_ROWS)) and \
+           (col_ + s_ in range(FIELD_COLS)):
+                risin_line_ += cell_array_[row_ - s_][col_ + s_]['xo']
+        # Check in falling (up-left to down-right) diagonal
+        if (row_ + s_ in range(FIELD_ROWS)) and \
+           (col_ + s_ in range(FIELD_COLS)):
+                falln_line_ += cell_array_[row_ + s_][col_ + s_]['xo']
     if (horiz_line_.find(looser_line_) > -1) or \
        (verti_line_.find(looser_line_) > -1) or \
        (risin_line_.find(looser_line_) > -1) or \
        (falln_line_.find(looser_line_) > -1):
         if xo_ == 'X':
-            print(draw_field(array_))
+            print(draw_field(cell_array_))
             print(u'Вы проиграли!')
         if xo_ == 'O':
-            print(draw_field(array_))
+            print(draw_field(cell_array_))
             print(u'Вы победили!')
         exit()
 
