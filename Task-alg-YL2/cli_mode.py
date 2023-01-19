@@ -165,8 +165,8 @@ def check_end(cell_array_):
 
 def dude_answer(cell_array_, row_, col_):
     ''' Called in put_signs().
-    Puts the player's move data into a matrix and checks the existence
-    of five X or O in a line.
+    Puts the player move data into a matrix and checks the existence of
+    five X in a line.
     -----
     Используется в put_signs().
     Заносит данные хода игрока в матрицу и проверяет "пять X в линию".
@@ -179,14 +179,22 @@ def dude_answer(cell_array_, row_, col_):
     write_weights(cell_array_, row_, col_, 'X')
     check_line(cell_array_, row_, col_, 'X')
 
-def comp_answer(array_):
-    ''' Ход компьютера. Отбирает свободные клетки с минимальным весом и уже
-        из них выбирает одну для хода. Заносит данные в матрицу и проверяет
-        "пять O в линию".
+def comp_answer(cell_array_):
+    ''' Called in put_signs() and game_cycle().
+    Computer move. Selects free cells with a minimum weight and randomly
+    chooses one of them for a move. Puts the data into a matrix and
+    checks the existence of five O in a line.
+    -----
+    Используется в put_signs() и game_cycle().
+    Ход компьютера. Отбирает свободные клетки с минимальным весом и уже
+    из них выбирает одну для хода. Заносит данные в матрицу и проверяет
+    "пять O в линию".
+    Arguments:
+        cell_array_ [list] -- Двумерный массив (список списков) объектов
     '''
     candidates_ = []
     min_weight_ = 1000
-    for row_ in array_:
+    for row_ in cell_array_:
         for cell_ in row_:
             if cell_['xo'] == '.':
                 if cell_['weight'] > min_weight_:
@@ -198,9 +206,9 @@ def comp_answer(array_):
                     candidates_.clear()
                     candidates_.append(cell_['pos'])
     (r_, c_) = choice(candidates_)
-    array_[r_][c_]['xo'] = 'O'
-    write_weights(array_, r_, c_, 'O')
-    check_line(array_, r_, c_, 'O')
+    cell_array_[r_][c_]['xo'] = 'O'
+    write_weights(cell_array_, r_, c_, 'O')
+    check_line(cell_array_, r_, c_, 'O')
 
 def put_signs(cell_array_, str_):
     ''' Called in game_cycle().
