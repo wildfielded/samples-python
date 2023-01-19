@@ -163,12 +163,21 @@ def check_end(cell_array_):
         print(u'Нет свободных клеток. Ничья!')
         exit()
 
-def dude_answer(array_, row_, col_):
-    ''' Заносит данные хода игрока в матрицу и проверяет "пять X в линию"
+def dude_answer(cell_array_, row_, col_):
+    ''' Called in put_signs().
+    Puts the player's move data into a matrix and checks the existence
+    of five X or O in a line.
+    -----
+    Используется в put_signs().
+    Заносит данные хода игрока в матрицу и проверяет "пять X в линию".
+    Arguments:
+        cell_array_ [list] -- Двумерный массив (список списков) объектов
+        row_, col_ [int] -- Номера строки и колонки клетки, в которой
+            сделан ход
     '''
-    array_[row_][col_]['xo'] = 'X'
-    write_weights(array_, row_, col_, 'X')
-    check_line(array_, row_, col_, 'X')
+    cell_array_[row_][col_]['xo'] = 'X'
+    write_weights(cell_array_, row_, col_, 'X')
+    check_line(cell_array_, row_, col_, 'X')
 
 def comp_answer(array_):
     ''' Ход компьютера. Отбирает свободные клетки с минимальным весом и уже
