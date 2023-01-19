@@ -145,11 +145,17 @@ def check_line(cell_array_, row_, col_, xo_):
             print(u'Вы победили!')
         exit()
 
-def check_end(array_):
-    ''' Заканчивает игру, когда не осталось свободных клеток.
+def check_end(cell_array_):
+    ''' Called in put_signs().
+    Ends the game if there are no free cells left.
+    -----
+    Используется в put_signs().
+    Заканчивает игру, когда не осталось свободных клеток.
+    Arguments:
+        cell_array_ [list] -- Двумерный массив (список списков) объектов
     '''
     empty_cells_ = 0
-    for row_ in array_:
+    for row_ in cell_array_:
         for cell_ in row_:
             if cell_['xo'] == '.':
                 empty_cells_ += 1
