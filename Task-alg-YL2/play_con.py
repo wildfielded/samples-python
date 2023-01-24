@@ -40,7 +40,7 @@ def draw_field(cell_array_):
     for row_ in cell_array_:
         tmp_str_ = str(row_num_) + '--'
         for cell_ in row_:
-            tmp_str_ += (cell_['xo'] + ' ')
+            tmp_str_ += (cell_.xo + ' ')
         tmp_str_ += '\n'
         output_str_ += tmp_str_
         row_num_ += 1
@@ -62,26 +62,26 @@ def write_weights(cell_array_, row_, col_, xo_):
         weights_tuple_ = DUDE_WEIGHTS
     else:
         weights_tuple_ = COMP_WEIGHTS
-    cell_array_[row_][col_]['weight'] += weights_tuple_[0]
+    cell_array_[row_][col_].weight += weights_tuple_[0]
     for s_ in range(1, 5):
         # Направления -> right, left, down, up
         if col_ + s_ in range(FIELD_COLS):
-            cell_array_[row_][col_ + s_]['weight'] += weights_tuple_[s_]
+            cell_array_[row_][col_ + s_].weight += weights_tuple_[s_]
         if col_ - s_ in range(FIELD_COLS):
-            cell_array_[row_][col_ - s_]['weight'] += weights_tuple_[s_]
+            cell_array_[row_][col_ - s_].weight += weights_tuple_[s_]
         if row_ + s_ in range(FIELD_ROWS):
-            cell_array_[row_ + s_][col_]['weight'] += weights_tuple_[s_]
+            cell_array_[row_ + s_][col_].weight += weights_tuple_[s_]
         if row_ - s_ in range(FIELD_ROWS):
-            cell_array_[row_ - s_][col_]['weight'] += weights_tuple_[s_]
+            cell_array_[row_ - s_][col_].weight += weights_tuple_[s_]
         # Направления -> down-right, down-left, up-right, up-left
         if (row_ + s_ in range(FIELD_ROWS)) and (col_ + s_ in range(FIELD_COLS)):
-            cell_array_[row_ + s_][col_ + s_]['weight'] += weights_tuple_[s_]
+            cell_array_[row_ + s_][col_ + s_].weight += weights_tuple_[s_]
         if (row_ + s_ in range(FIELD_ROWS)) and (col_ - s_ in range(FIELD_COLS)):
-            cell_array_[row_ + s_][col_ - s_]['weight'] += weights_tuple_[s_]
+            cell_array_[row_ + s_][col_ - s_].weight += weights_tuple_[s_]
         if (row_ - s_ in range(FIELD_ROWS)) and (col_ + s_ in range(FIELD_COLS)):
-            cell_array_[row_ - s_][col_ + s_]['weight'] += weights_tuple_[s_]
+            cell_array_[row_ - s_][col_ + s_].weight += weights_tuple_[s_]
         if (row_ - s_ in range(FIELD_ROWS)) and (col_ - s_ in range(FIELD_COLS)):
-            cell_array_[row_ - s_][col_ - s_]['weight'] += weights_tuple_[s_]
+            cell_array_[row_ - s_][col_ - s_].weight += weights_tuple_[s_]
 
 def check_line(cell_array_, row_, col_, xo_):
     ''' Called in dude_answer() and comp_answer().
@@ -104,18 +104,18 @@ def check_line(cell_array_, row_, col_, xo_):
     for s_ in range(-4, 5):
         # Check in horisontal line
         if col_ + s_ in range(FIELD_COLS):
-                horiz_line_ += cell_array_[row_][col_ + s_]['xo']
+                horiz_line_ += cell_array_[row_][col_ + s_].xo
         # Check in vertical line
         if row_ + s_ in range(FIELD_ROWS):
-                verti_line_ += cell_array_[row_ + s_][col_]['xo']
+                verti_line_ += cell_array_[row_ + s_][col_].xo
         # Check in rising (down-left to up-right) diagonal
         if (row_ - s_ in range(FIELD_ROWS)) and \
            (col_ + s_ in range(FIELD_COLS)):
-                risin_line_ += cell_array_[row_ - s_][col_ + s_]['xo']
+                risin_line_ += cell_array_[row_ - s_][col_ + s_].xo
         # Check in falling (up-left to down-right) diagonal
         if (row_ + s_ in range(FIELD_ROWS)) and \
            (col_ + s_ in range(FIELD_COLS)):
-                falln_line_ += cell_array_[row_ + s_][col_ + s_]['xo']
+                falln_line_ += cell_array_[row_ + s_][col_ + s_].xo
     if (horiz_line_.find(looser_line_) > -1) or \
        (verti_line_.find(looser_line_) > -1) or \
        (risin_line_.find(looser_line_) > -1) or \
@@ -140,7 +140,7 @@ def check_end(cell_array_):
     empty_cells_ = 0
     for row_ in cell_array_:
         for cell_ in row_:
-            if cell_['xo'] == '.':
+            if cell_.xo == '.':
                 empty_cells_ += 1
     if empty_cells_ == 0:
         print(u'Нет свободных клеток. Ничья!')
@@ -158,7 +158,7 @@ def dude_answer(cell_array_, row_, col_):
         row_, col_ [int] -- Номера строки и колонки клетки, в которой
             сделан ход
     '''
-    cell_array_[row_][col_]['xo'] = 'X'
+    cell_array_[row_][col_].xo = 'X'
     write_weights(cell_array_, row_, col_, 'X')
     check_line(cell_array_, row_, col_, 'X')
 
@@ -179,17 +179,17 @@ def comp_answer(cell_array_):
     min_weight_ = 1000
     for row_ in cell_array_:
         for cell_ in row_:
-            if cell_['xo'] == '.':
-                if cell_['weight'] > min_weight_:
+            if cell_.xo == '.':
+                if cell_.weight > min_weight_:
                     continue
-                elif cell_['weight'] == min_weight_:
-                    candidates_.append(cell_['pos'])
+                elif cell_.weight == min_weight_:
+                    candidates_.append(cell_.coords)
                 else:
-                    min_weight_ = cell_['weight']
+                    min_weight_ = cell_.weight
                     candidates_.clear()
-                    candidates_.append(cell_['pos'])
+                    candidates_.append(cell_.coords)
     (r_, c_) = choice(candidates_)
-    cell_array_[r_][c_]['xo'] = 'O'
+    cell_array_[r_][c_].xo = 'O'
     write_weights(cell_array_, r_, c_, 'O')
     check_line(cell_array_, r_, c_, 'O')
 
@@ -211,7 +211,7 @@ def put_signs(cell_array_, str_):
         row_ = int(list_[0])
         col_ = int(list_[1])
         if row_ < FIELD_ROWS and col_ < FIELD_COLS:
-            if cell_array_[row_][col_]['xo'] == '.':
+            if cell_array_[row_][col_].xo == '.':
                 dude_answer(cell_array_, row_, col_)
                 check_end(cell_array_)
                 comp_answer(cell_array_)
@@ -245,11 +245,9 @@ def game_cycle(cell_array_, who_first_):
 ''' =====----- MAIN -----===== '''
 
 if __name__ == '__main__':
-    # cell_array = [[g_.GameCell().cell_obj.copy() for col in range(FIELD_COLS)]
-                                                 # for row in range(FIELD_ROWS)]
     cell_array = g_.GameField().cell_arr
     for pos_ in POS_LIST:
-        cell_array[pos_[0]][pos_[1]]['pos'] = pos_
+        cell_array[pos_[0]][pos_[1]].coords = pos_
     who_first = input(u'Вы играете крестиками. Компьютер - ноликами.\n' + \
                       u'Кто делает первый ход? 1 - игрок, 2 - компьютер: ')
     game_cycle(cell_array, who_first)

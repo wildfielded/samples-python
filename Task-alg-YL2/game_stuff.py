@@ -18,11 +18,10 @@ class GameCell:
     следующего хода (weight).
     '''
     def __init__(self):
-        self.cell_obj = {
-            'pos': (0, 0),
-            'xo': '.',
-            'weight': 0
-        }
+        self.coords = (0, 0)
+        self.xo = '.'
+        self.weight = 0
+        # self.cell_obj = {'pos': (0, 0), 'xo': '.', 'weight': 0}
 
 class GameField:
     ''' The array of game field cells. Consists of instances of the
@@ -31,8 +30,7 @@ class GameField:
     Весь массив клеток игрового поля, состоящий из экземпляров класса GameCell
     '''
     def __init__(self):
-        self.cell_arr = [[GameCell().cell_obj.copy()
-                          for col in range(FIELD_COLS)]
-                          for row in range(FIELD_ROWS)]
+        self.cell_arr = [[GameCell() for col in range(FIELD_COLS)]
+                                     for row in range(FIELD_ROWS)]
 
 #####=====----- THE END -----=====#########################################
