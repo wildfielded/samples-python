@@ -244,7 +244,6 @@ def game_cycle(cell_array_, who_first_):
 ''' =====----- MAIN -----===== '''
 
 if __name__ == '__main__':
-    # cell_array = g_.GameField().cell_arr
     game_field = g_.GameField()
     cell_array = game_field.cell_arr
     who_first = input(u'Вы играете крестиками. Компьютер - ноликами.\n' + \
