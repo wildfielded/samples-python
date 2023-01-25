@@ -5,8 +5,9 @@ from random import choice
 
 from PyQt5.QtCore import QCoreApplication, Qt, QSize
 from PyQt5.QtWidgets import (QApplication,
-                             QWidget, QDesktopWidget, QPushButton, QLabel,
+                             QWidget, QPushButton, QLabel,
                              QGridLayout, QHBoxLayout, QVBoxLayout)
+from PyQt5.QtWidgets import QDesktopWidget
 
 import game_stuff as g_
 
