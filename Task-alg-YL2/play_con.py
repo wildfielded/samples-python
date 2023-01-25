@@ -10,8 +10,6 @@ import game_stuff as g_
 
 FIELD_ROWS = g_.FIELD_ROWS
 FIELD_COLS = g_.FIELD_COLS
-POS_LIST = [(row, col) for row in range(FIELD_ROWS)
-                       for col in range(FIELD_COLS)]
 DUDE_WEIGHTS = (10, 8, 6, 4, 2)
 COMP_WEIGHTS = (5, 4, 3, 2, 1)
 
@@ -238,6 +236,7 @@ def game_cycle(cell_array_, who_first_):
         str2_ = u'Координаты крестика числами в формате "номер_строки/номер_столбца": '
         coords = input(str1_ + str2_)
         if coords in ('Q', 'q'):
+            print(u'Игра прервана')
             break
         put_signs(cell_array_, coords)
 
@@ -245,9 +244,9 @@ def game_cycle(cell_array_, who_first_):
 ''' =====----- MAIN -----===== '''
 
 if __name__ == '__main__':
-    cell_array = g_.GameField().cell_arr
-    for pos_ in POS_LIST:
-        cell_array[pos_[0]][pos_[1]].coords = pos_
+    # cell_array = g_.GameField().cell_arr
+    game_field = g_.GameField()
+    cell_array = game_field.cell_arr
     who_first = input(u'Вы играете крестиками. Компьютер - ноликами.\n' + \
                       u'Кто делает первый ход? 1 - игрок, 2 - компьютер: ')
     game_cycle(cell_array, who_first)
