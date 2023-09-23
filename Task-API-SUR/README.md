@@ -41,7 +41,7 @@ Implement REST API with three http-methods:
 
     It is required to implement data validation checks.
 
-    Minors (<16 y.o.) must not be registered with the service.
+    Minors (<16 y.o.) are not allowed to register with the service.
 
     Returns **json** with user ID on success, or **json** with two fields
     **`code`** and **`text`** on error.
@@ -75,25 +75,25 @@ with `run` target to run the made API on port 8080.
 
 ## Solution ##
 
-- To fit the deadlines, it was decided to use a simple **Bottle** web server and
+- To meet the deadlines, it was decided to use a simple **Bottle** web server and
 **SQLite3** DBMS instead of **Django** and **PostgreSQL**.
 
-- For simplicity, the age of majority check assumes that the birth date has
+- For simplicity, the age of majority check assumes that the date of birth has
 already been pre-formatted and that the `birth` field contains a string of
 numbers in the format `YYYY-MM-DD`.
 
 - The **SQLite3** database contains two tables. The **`Users`** table stores all
-user data. The **`Errors`** table has a minimal pre-set of error variants, which
-can be expanded for future requirements.
+user data. The **`Errors`** table has a minimal set of error variants, that can
+be extended for future needs.
 
-- Due to clear criteria for uniqueness still need to be defined, the first API
-method does not check for uniqueness when registering a user (wether such a user
-already exists in the database).
+- Since clear criteria for uniqueness have yet to be defined, the first API
+method does not check for uniqueness when registering a user (whether such a
+user already exists in the database).
 
 - The third API method returns a **json** with all fields except `uid` and
-`password`. If the user has `NULL` in the optional `email` and/or `tg` table
-columns, then the corresponding **json** fields contain `null`. If desired, we
-can exclude the output of such fields.
+`password`. If the user has `NULL` in the optional `email` and/or `tg` columns,
+then the corresponding **json** fields will contain `null`. If desired, we can
+exclude the output of such fields.
 
 [:arrow_up: Contents](#contents)
 
@@ -104,8 +104,8 @@ can exclude the output of such fields.
 [**`api_module.py`**](api_module.py)&nbsp;&mdash; main module with API methods.
 
 [**`api_validations.py`**](api_validations.py)&nbsp;&mdash; additional module
-for incoming data validation checks. It contains functional blanks for
-validating input data, which can be modified when additional requirements appear.
+for incoming data validation checks. It contains functional blanks for input
+data validation, which can be modified as additional requirements arise.
 
 [**`api_demo.py`**](api_demo.py)&nbsp;&mdash; script to run application and
 demonstrate API on port 8080 in virtual environment.
@@ -122,8 +122,8 @@ file **`sqlite/db.sqlite3`**.
 1. Required **Python** version 3.8 or later, with actual **pip** manager.
 2. Install **SQLite3** using the [Linux](https://linoxide.com/install-use-sqlite-linux)
 or [Windows](https://www.sqlitetutorial.net/download-install-sqlite/) manuals.
-3. Download the project files from the current directory of the repository to
-the local directory of the computer.
+3. Download the project files from the current repository directory to the local
+directory of the computer.
 4. To create the `sqlite/db.sqlite3` database file, enter the `sqlite`
 subdirectory, run **SQLite3**, and then enter the following meta-commands:
 
@@ -160,8 +160,8 @@ the `virtualenv` virtual environment in the local directory:
     ```
 
 6. You can use the [**`HTTPie`**](https://httpie.io/) package (or anything else
-you like) for PoC. If it is not in your OS, you can additionally install it in a
-separate console with the same virtual environment:
+you like) as a PoC. If it is not included in your operating system, you can also
+install it in a separate console with the same virtual environment:
 
     ```bash
     pip install httpie

@@ -17,8 +17,8 @@
 
 - Develop a program to calculate the shortest path for a mail drone to fly. The
 drone starts from the post office, flies around all the recipients once to
-deliver the parcels and returns to the post office. Destination map with points
-and its coordinates set. Ones need to find the shortest route to fly around.
+deliver the packages and returns to the post office. Destination map with points
+and their coordinates set. Ones have to find the shortest route to fly around.
 
 - Destination map:    
 ![Destination map](ADDS/addresses_map.png)
@@ -33,11 +33,11 @@ and its coordinates set. Ones need to find the shortest route to fly around.
     5. Vechnozelyonaya alley, 742 – (8, 3)
     ```
 
-- The result must contain a sequence of points, which make up the shortest of
-the routes with the output of intermediate distances for each point (from the
-start to the current point) and the total length of the route.
+- The result must be a sequence of points representing the shortest route with
+the intermediate distances for each point (from the start to the current point)
+and the total length of the route.
 
-- The point coordinates following each other must show the shortest path found,
+- The coordinates of successive points must indicate the shortest path found,
 indicating the intermediate path length for each next point. The total length of
 the entire route is indicated after the equal sign.
 
